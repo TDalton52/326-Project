@@ -12,3 +12,4 @@ Wireframe screenshots:
 
 HTML screenshots:
 ![Homepage screenshot](html-images/home.png)
+![Course result screenshot](html-images/course.png)

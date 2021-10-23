@@ -1,0 +1,30 @@
+.center
+{
+  text-align: center;
+}
+
+.rating
+{
+  font-size: 25px;
+}
+
+.btn
+{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#course-name
+{
+  font-size: 50px;
+}
+
+#basic-info
+{
+  font-size: 35px;
+}
+
+#right-align
+{
+  float: right;
+}

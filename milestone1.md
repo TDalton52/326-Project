@@ -6,6 +6,6 @@ Our interactions between the users and data have not changed, they will be as fo
 4. A comment section for users to discuss the classes they've taken and why they liked or didn't like them
 
 
-![Homepage wireframe](wireframe-home.png)
-![Search result page wireframe](wireframe-search.png)
-![Course page wireframe](wireframe-course.png)
+![Homepage wireframe](wireframe-images/wireframe-home.png)
+![Search result page wireframe]((wireframe-images/wireframe-search.png)
+![Course page wireframe]((wireframe-images/wireframe-course.png)

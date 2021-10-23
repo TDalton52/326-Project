@@ -5,7 +5,10 @@ Our interactions between the users and data have not changed, they will be as fo
 3. A star-based rating system for users to leave rating feedback
 4. A comment section for users to discuss the classes they've taken and why they liked or didn't like them
 
-
+Wireframe screenshots:
 ![Homepage wireframe](wireframe-images/wireframe-home.png)
 ![Search result page wireframe](wireframe-images/wireframe-search.png)
 ![Course page wireframe](wireframe-images/wireframe-course.png)
+
+HTML screenshots:
+![Homepage screenshot](html-images/home.png)

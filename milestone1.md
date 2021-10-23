@@ -7,5 +7,5 @@ Our interactions between the users and data have not changed, they will be as fo
 
 
 ![Homepage wireframe](wireframe-images/wireframe-home.png)
-![Search result page wireframe]((wireframe-images/wireframe-search.png)
-![Course page wireframe]((wireframe-images/wireframe-course.png)
+![Search result page wireframe](wireframe-images/wireframe-search.png)
+![Course page wireframe](wireframe-images/wireframe-course.png)

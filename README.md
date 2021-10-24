@@ -26,6 +26,9 @@ Thant Kyaw Hset:
   Wrote html and css for results page
   Wrote html and css for schedule page
 
-Timothy Dalton:
+Timothy Dalton: 
+  Created the wireframe for the home page, sample results page, and sample course page
+  Wrote html and css for home page
+  Wrote html and css for sample course page
 
 Christopher Overstreet:

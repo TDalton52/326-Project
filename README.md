@@ -18,3 +18,14 @@ The key pieces of this application will be as follows:
 2. A search feature to search through the scraped data
 3. A star-based rating system for users to leave rating feedback
 4. A comment section for users to discuss the classes they've taken and why they liked or didn't like them
+
+
+Milestone 1 Division of Labor Breakdown:
+Thant Kyaw Hset:
+  Created the wireframe for the schedule page
+  Wrote html and css for results page
+  Wrote html and css for schedule page
+
+Timothy Dalton:
+
+Christopher Overstreet:

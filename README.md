@@ -5,7 +5,7 @@ Team Name: Team Hay
 Application Name: 5 college scheduler
 
 Team Overview:
-Thant Kyaw Hset: (insert github username here)
+Thant Kyaw Hset: (@thantkyaw10)
 Tim Dalton: @TDalton52
 Chris Overstreet: @C-Overstreet
 

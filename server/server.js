@@ -1,7 +1,7 @@
 'use strict';
-import * as http from "http";
-import * as url from "url";
-import * as fs from "fs";
+const http = require("http");
+const url = require("url");
+const fs = require("fs");
 
 const courseFile = "./courses.json";
 let courses = [];

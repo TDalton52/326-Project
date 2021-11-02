@@ -13,11 +13,11 @@ if(document.getElementById("searchresults") !== null)
 
 if(document.getElementById("searchbutton") !== null)
 {
-  document.getElementById("searchresults").addEventListener("click", async function() 
+  document.getElementById("searchbutton").addEventListener("click", async function() 
   {
-    const response = await fetch("localhost:8080/server/server.js");
+    const response = await fetch("http://localhost:8080/server/server.js");
     const data = await response.json();
     window.location.href = "http://localhost:8000/results.html";
-    
+
   });
 }

@@ -1,0 +1,22 @@
+{
+  "name": "326-project",
+  "version": "1.0.0",
+  "description": "5 college scheduler and searcher",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "14.17.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TDalton52/326-Project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TDalton52/326-Project/issues"
+  },
+  "homepage": "https://github.com/TDalton52/326-Project#readme"
+}

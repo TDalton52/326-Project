@@ -1,7 +1,13 @@
-'use strict';
-const http = require("http");
-const url = require("url");
-const fs = require("fs");
+"use strict";
+import express from "express";
+import * as fs from "fs";
+import cors from "cors";
+
+const app = express();
+const port = 3000;
+
+app.use(express.json());
+app.use(cors());
 
 const courseFile = "./courses.json";
 let courses = [];
@@ -18,28 +24,20 @@ function reload(filename)
   }
 }
 
-const server = http.createServer();
-server.on("request", function(req, res)  
+app.get('/', function(req, res) 
 {
-  const parsedURL = url.parse(req.url, true);
   reload(courseFile);
-  if (req.method === "GET") 
+  let result = [];
+  for(const key in courses)
   {
-    let result = [];
-    for(const key in courses)
-    {
-      result.push(courses[key]);
-    }
-    res.write(JSON.stringify(result)); //This will just be a dummy response for now, check courses.json for what the response will look like
+    result.push(courses[key]);
   }
-  else if (req.method === "POST") 
-  {
-    //This is not our problem just yet, we will deal with this in the next milestone
-  }
-  else
-  {
-    res.write("req.method was not GET or POST, please try again");
-  }
-  res.end(res.statusCode.toString());
-})
-server.listen(8080);
+  res.send(JSON.stringify(result)); //This will just be a dummy response for now, check courses.json for what the response will look like
+});
+
+app.post("/", function(req, res)
+{
+  //TODO
+});
+
+app.listen(port, function() {console.log(`server listening at http://localhost:${port}`)});

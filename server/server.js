@@ -46,4 +46,9 @@ app.post("/createCourse", function(req, res)
   reload(courseFile);
 });
 
+app.post("/reset", function(req, res){
+  fs.writeFileSync(courseFile, "");
+  courses = [];
+});
+
 app.listen(port, function() {console.log(`server listening at http://localhost:${port}`)});

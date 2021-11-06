@@ -17,14 +17,12 @@ window.addEventListener("load", function()
   {
     if(i.toString() in window.localStorage)
     {
-      console.log("made it here");
       const data = JSON.parse(window.localStorage.getItem(i.toString()));
       console.log(JSON.stringify(data));
       const newRow = document.createElement("div");
+      newRow.classList.add("row");
       for(const key in data)
       {
-        console.log(key);
-        console.log(data[key]);
         const newElem = document.createElement("span");
         newElem.classList.add(key);
         newElem.innerText = data[key];

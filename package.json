@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/TDalton52/326-Project/issues"
   },
-  "homepage": "https://github.com/TDalton52/326-Project#readme"
+  "homepage": "https://github.com/TDalton52/326-Project#readme",
+  "dependencies": {
+    "cors": "^2.8.5"
+  }
 }

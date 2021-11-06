@@ -9,7 +9,7 @@ const port = 3000;
 app.use(express.json());
 app.use(cors());
 
-const courseFile = "./courses.json";
+const courseFile = "server/courses.json";
 let courses = [];
 
 function reload(filename) 
@@ -38,11 +38,12 @@ app.get('/getCourses', function(req, res)
 app.post("/createCourse", function(req, res)
 {
   reload(courseFile);
-  const k = req.query.key;
-  console.log(k);
-  const v = req.query.value;
-  console.log(v);
+  //Write param to courses
+  //TODO: Check if the POST param fits actual course object
+  courses.push(req.query);
+  fs.writeFileSync(courseFile, JSON.stringify(courses));
   res.send(JSON.stringify(req.query));
+  reload(courseFile);
 });
 
 app.listen(port, function() {console.log(`server listening at http://localhost:${port}`)});

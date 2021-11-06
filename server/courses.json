@@ -1,10 +1,1 @@
-[{"class-name":"COMPSCI 326","school":"UMass","instructor":"Emery Berger","time":"1:00 - 2:15"}, 
-  {"class-name":"Sample UMass class","school":"UMass","instructor":"Emery Berger","time":"1:00 - 2:15"},
-  {"class-name":"Sample Amherst College class","school":"Amherst College","instructor":"Emery Berger","time":"1:00 - 2:15"},
-  {"class-name":"Sample Mount Holyoke class","school":"Mount Holyoke","instructor":"Emery Berger","time":"1:00 - 2:15"},
-  {"class-name":"Sample Smith College class","school":"Smith College","instructor":"Emery Berger","time":"1:00 - 2:15"},
-  {"class-name":"Sample Hampshire College class","school":"Hampshire College","instructor":"Emery Berger","time":"1:00 - 2:15"},
-  {"class-name":"CLASSNAME 100","school":"UMass","instructor":"Emery Berger","time":"1:00 - 2:15"},
-  {"class-name":"CLASSNAME 200","school":"UMass","instructor":"Emery Berger","time":"1:00 - 2:15"},
-  {"class-name":"CLASSNAME 100","school":"Amherst College","instructor":"Emery Berger","time":"1:00 - 2:15"},
-  {"class-name":"Unique class","school":"UMass","instructor":"Emery Berger","time":"1:00 - 2:15"}]
+[{"class-name":"COMPSCI 326","school":"UMass","instructor":"Emery Berger","time":"1:00 - 2:15"},{"class-name":"Sample UMass class","school":"UMass","instructor":"Emery Berger","time":"1:00 - 2:15"},{"class-name":"Sample Amherst College class","school":"Amherst College","instructor":"Emery Berger","time":"1:00 - 2:15"},{"class-name":"Sample Mount Holyoke class","school":"Mount Holyoke","instructor":"Emery Berger","time":"1:00 - 2:15"},{"class-name":"Sample Smith College class","school":"Smith College","instructor":"Emery Berger","time":"1:00 - 2:15"},{"class-name":"Sample Hampshire College class","school":"Hampshire College","instructor":"Emery Berger","time":"1:00 - 2:15"},{"class-name":"CLASSNAME 100","school":"UMass","instructor":"Emery Berger","time":"1:00 - 2:15"},{"class-name":"CLASSNAME 200","school":"UMass","instructor":"Emery Berger","time":"1:00 - 2:15"},{"class-name":"CLASSNAME 100","school":"Amherst College","instructor":"Emery Berger","time":"1:00 - 2:15"},{"class-name":"Unique class","school":"UMass","instructor":"Emery Berger","time":"1:00 - 2:15"},{"class-name":"HIPHOP","school":"Amherst","instructor":"Stacks","time":"100"}]

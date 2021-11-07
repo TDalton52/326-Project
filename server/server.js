@@ -9,7 +9,7 @@ const port = 3000;
 app.use(express.json());
 app.use(cors());
 
-const courseFile = "server/courses.json";
+const courseFile = "./courses.json";
 let courses = [];
 
 function reload(filename) 
@@ -24,7 +24,7 @@ function reload(filename)
   }
 }
 
-app.get('/getCourses', function(req, res) 
+app.get('/getScores', function(req, res) 
 {
   reload(courseFile);
   let result = [];

@@ -24,6 +24,7 @@
   "homepage": "https://github.com/TDalton52/326-Project#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "pg-promise": "^10.11.1"
   }
 }

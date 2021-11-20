@@ -24,6 +24,11 @@ function reload(filename)
   }
 }
 
+//Serve homepage when going to "localhost:8000/"
+app.get('/', function(req, res){
+
+});
+
 app.get('/getScores', function(req, res) 
 {
   reload(courseFile);

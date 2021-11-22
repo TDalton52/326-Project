@@ -2,7 +2,6 @@
 import express from "express";
 import * as fs from "fs";
 import cors from "cors";
-const {Client} = pkg;
 
 const app = express();
 let port = process.env.PORT;
@@ -30,7 +29,7 @@ function reload(filename)
 
 //Serve homepage when going to "localhost:8000/"
 app.get('/', function(req, res){
-
+  res.send('client/home.html');
 });
 
 app.get('/getScores', function(req, res) 

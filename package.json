@@ -29,11 +29,15 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "passport": "^0.5.0",
+<<<<<<< HEAD
     "passport-local": "^1.0.0",
     "pkg": "^5.4.1"
 =======
     "express": "^4.17.1",
     "pg-promise": "^10.11.1"
 >>>>>>> 8d715fe39ef2f8198a2000bdc05a229066a180bd
+=======
+    "passport-local": "^1.0.0"
+>>>>>>> parent of 1c47f48 (pgres node module)
   }
 }

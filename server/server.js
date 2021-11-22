@@ -4,10 +4,7 @@ import * as fs from "fs";
 import cors from "cors";
 
 const app = express();
-let port = process.env.PORT;
-if (port == null || port == "") {
-  port = 8000;
-}
+const port = 3000;
 
 app.use(express.json());
 app.use(cors());

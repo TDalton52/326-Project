@@ -24,6 +24,7 @@
   "homepage": "https://github.com/TDalton52/326-Project#readme",
   "dependencies": {
     "cors": "^2.8.5",
+<<<<<<< HEAD
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
@@ -31,7 +32,6 @@
 <<<<<<< HEAD
     "passport-local": "^1.0.0",
     "pkg": "^5.4.1"
-<<<<<<< HEAD
 =======
     "express": "^4.17.1",
     "pg-promise": "^10.11.1"
@@ -39,7 +39,5 @@
 =======
     "passport-local": "^1.0.0"
 >>>>>>> parent of 1c47f48 (pgres node module)
-=======
->>>>>>> parent of 157e507 (Merge branch 'main' of https://github.com/TDalton52/326-Project)
   }
 }

@@ -3,28 +3,31 @@
     grid-template-columns: repeat(8, auto);
     width: 103px;
     height: 103px;
-  }
-  .class-name {
-    border-top: 1px solid black;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-    height: 50px;
-    width: 300px;
-  }
-  .instructor {
-    border-top: 1px solid black;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-    height: 50px;
-    width: 200px;
-  }
-  .time, .school {
-    border-top: 1px solid black;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-    height: 50px;
-    width: 100px;
-  }
+}
+
+.class-name {
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  height: 50px;
+  width: 300px;
+}
+
+.instructor {
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  height: 50px;
+  width: 200px;
+}
+
+.time, .school {
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  height: 50px;
+  width: 100px;
+}

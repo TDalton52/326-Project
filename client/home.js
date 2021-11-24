@@ -16,7 +16,7 @@ document.getElementById("searchbutton").addEventListener("click", async function
     console.log(JSON.stringify(data[index]));
     if(searchType === "keyword")
     {
-      if(data[index]["class-name"].includes(input) && (data[index]["school"] === school || school === "All Colleges"))
+      if(data[index]["name"].includes(input) && (data[index]["school"] === school || school === "All Colleges"))
       {
         window.localStorage.setItem(index, JSON.stringify(data[index]));
       }

@@ -4,7 +4,17 @@ import * as fs from "fs";
 import cors from "cors";
 import pkg from 'pg';
 import {writeFile, readFileSync, existsSync, fstat} from 'fs';
+import expressSession from "express-session";
+import passport from "passport";
+const LocalStrategy = require("passport-local").Strategy;
 const {Client} = pkg;
+
+//Starts express app
+const app = express();
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 5000;
+}
 
 // Starts the postgres client
 const client = new Client({
@@ -13,18 +23,40 @@ const client = new Client({
       rejectUnauthorized: false
   }
 });
-
 client.connect();
 
-const app = express();
-let port = process.env.PORT;
-if (port == null || port == "") {
-  port = 5000;
-}
+//Session init
+const session = {
+  secret : process.env.SECRET || 'SECRET', // set this encryption key in Heroku config (never in GitHub)!
+  resave : false,
+  saveUninitialized: false
+};
 
+//Passport config
+const strategy = new LocalStrategy(async (username, password, done) => {
+  if (!findUser(username)) {
+      // no such user
+      return done(null, false, { 'message' : 'Wrong username' });
+  }
+  if (!validatePassword(username, password)) {
+      // invalid password
+      // should disable logins after N messages
+      // delay return to rate-limit brute-force attacks
+      await new Promise((r) => setTimeout(r, 2000)); // two second delay
+      return done(null, false, { 'message' : 'Wrong password' });
+  }
+  // success!
+  // should create a user object here, associated with a unique identifier
+  return done(null, username);
+});
+
+//App using stuff
+passport.use(strategy);
+app.use(expressSession(session));
 app.use(express.json());
 app.use(cors());
-
+app.use(passport.initialize());
+app.use(passport.session());
 
 let courses = [];
 //UPDATE COURSES FROM WEBSITE

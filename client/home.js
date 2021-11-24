@@ -3,7 +3,7 @@
 document.getElementById("searchbutton").addEventListener("click", async function() 
 {
   localStorage.clear();
-  const response = await fetch(`https://${window.location.hostname}/getScores`, {headers:{"accepts":"application/json"}});
+  const response = await fetch(`https://${window.location.hostname}/getCourses`, {headers:{"accepts":"application/json"}});
   const data = await response.json();
   console.log(JSON.stringify(data));
   const input = document.getElementById("search").value;

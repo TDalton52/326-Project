@@ -19,6 +19,7 @@ document.getElementById("searchbutton").addEventListener("click", async function
     {
       if(data[index]["name"].includes(input) && (data[index]["school"] === school || school === "All Colleges"))
       {
+        console.log("setting storage!");
         window.localStorage.setItem(index, JSON.stringify(data[index]));
       }
     }
@@ -30,7 +31,11 @@ document.getElementById("searchbutton").addEventListener("click", async function
       }
     }
   }
-  window.location.href = `https://${window.location.hostname}/client/results.html`
+  for(let item in window.localStorage)
+  {
+    console.log(item);
+  }
+  //window.location.href = `https://${window.location.hostname}/client/results.html`
 });
 
   

@@ -20,8 +20,8 @@ Division of Labor
         Implemented all the GET APIs
         Wrote the search backend for results.js
 
-![](html-images/1.png)
-![](html-images/2.png)
-![](html-images/3.png)
-![](html-images/4.png)
+![](html-images/1.PNG)
+![](html-images/2.PNG)
+![](html-images/3.PNG)
+![](html-images/4.PNG)
 

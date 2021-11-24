@@ -49,17 +49,17 @@ app.get('/', (req, res) => {
   console.log("Sending" + path);
 });
 
-app.get('/client/:name', (req, res) => {
-  var options = {root: app.path() + "client/"};
-  console.log(req.params.name);
-  res.sendFile(fileName, options, function (err) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('Sent:' + fileName);
-    }
-  });
-})
+// app.get('/client/:name', (req, res) => {
+//   var options = {root: app.path() + "client/"};
+//   console.log(req.params.name);
+//   res.sendFile(fileName, options, function (err) {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       console.log('Sent:' + fileName);
+//     }
+//   });
+// })
 
 app.get('/getScores', function(req, res) 
 {

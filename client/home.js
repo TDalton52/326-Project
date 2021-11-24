@@ -29,7 +29,7 @@ document.getElementById("searchbutton").addEventListener("click", async function
       }
     }
   }
-  window.location.href = `https://${window.location.hostname}/results.html`;
+  window.location.href = `/results.html`;
 });
 
   

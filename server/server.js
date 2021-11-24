@@ -6,15 +6,15 @@ import pkg from 'pg';
 import {writeFile, readFileSync, existsSync, fstat} from 'fs';
 const {Client} = pkg;
 
-//Starts the postgres client
-// const client = new Client({
-//   connectionString: process.env.DATABASE_URL,
-//   ssl: {
-//       rejectUnauthorized: false
-//   }
-// });
+// Starts the postgres client
+const client = new Client({
+  connectionString: "postgres://necirnaknrmnas:2bcf7172968ae65295b2647a1cdaf1da2ea7cb7ff74770b1a87cf8343dcb19a5@ec2-184-73-198-174.compute-1.amazonaws.com:5432/d3sbd6gu2f2j7g",
+  ssl: {
+      rejectUnauthorized: false
+  }
+});
 
-// client.connect();
+client.connect();
 
 const app = express();
 let port = process.env.PORT;
@@ -27,19 +27,20 @@ app.use(cors());
 
 
 let courses = [];
+//UPDATE COURSES FROM WEBSITE
+function reload(){
+  client.query("SELECT * FROM courses", async (err, res) => {
+    if(err){
+        console.log(err.stack);
+    }
+    else{
+        courses = res.rows;
+        console.log(res.rows);
+    }
+  });
+}
 
-// function reload(filename) 
-// {
-//   if (fs.existsSync(filename)) 
-//   {
-//     courses = JSON.parse(fs.readFileSync(filename));
-//   }
-//   else 
-//   {
-//     courses = [];
-//   }
-// }
-
+reload();
 //Serve homepage when going to "localhost:8000/"
 app.get('/', (req, res) => {
   const options = {root: app.path() + "client/"};
@@ -65,15 +66,10 @@ app.get('/client/:name', (req, res) => {
   });
 })
 
-app.get('/getScores', function(req, res) 
+app.get('/getCourses', async function(req, res) 
 {
-  reload(courseFile);
-  let result = [];
-  for(const key in courses)
-  {
-    result.push(courses[key]);
-  }
-  res.send(JSON.stringify(result)); //This will just be a dummy response for now, check courses.json for what the response will look like
+  reload();
+  res.json(courses); //This will just be a dummy response for now, check courses.json for what the response will look like
 });
 
 app.post("/createCourse", function(req, res)

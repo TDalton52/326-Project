@@ -29,9 +29,7 @@ document.getElementById("searchbutton").addEventListener("click", async function
       }
     }
   }
-  const html = await fetch(`https://${window.location.hostname}/client/results.html`);
-  let parser = new DOMParser();
-  document.documentElement.innerHTML = parser.parseFromString(html, "text/html");
+  window.location.href = `https://${window.location.hostname}/client/results.html`
 });
 
   

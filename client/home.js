@@ -29,9 +29,9 @@ document.getElementById("searchbutton").addEventListener("click", async function
       }
     }
   }
-  const response = await fetch(`https://${window.location.hostname}/client/results.html`);
+  const html = await fetch(`https://${window.location.hostname}/client/results.html`);
   let parser = new DOMParser();
-  document.innerHTML = parser.parseFromString(response, "text/html");
+  document.innerHTML = parser.parseFromString(html, "text/html");
 });
 
   

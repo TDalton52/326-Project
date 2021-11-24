@@ -45,7 +45,7 @@ app.get('/', (req, res) => {
   res.set('Content-Type', 'text/html');
   const home = readFileSync('client/home.html');
   res.send(home);
-  const path = app.path();
+  const path = req.baseUrl;
   console.log("Sending" + path);
 });
 

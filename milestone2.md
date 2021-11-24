@@ -1,4 +1,4 @@
-API:
+API
     GET /getCourses
         Parameters: None
         Description: Returns all the courses saved under courses.json
@@ -11,17 +11,16 @@ API:
         Parameters: None
         Description: Deletes all the courses saved so far and resets
 
-Division of Labor:
+Division of Labor
     Thant Kyaw Hset:
         Implemented all the POST APIs
         Wrote milestone2.md
 
-    Timothy Dalton:
+    Timothy Dalton
         Implemented all the GET APIs
         Wrote the search backend for results.js
 
-Screenshots of client working properly (some dummy results are included in all searches for testing purposes): 
-![Image of searching for specific class](client-images/1.png)
-![Image of results of specific class](client-images/2.png)
-![Image of searching across colleges](client-images/3.png)
-![Results of searching across colleges](client-images/4.png)
+![](html-images/course.png)
+![](html-images/home.png)
+![](html-images/results.png)
+![](html-images/schedule.png)

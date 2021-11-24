@@ -28,38 +28,42 @@ app.use(cors());
 
 let courses = [];
 
-function reload(filename) 
-{
-  if (fs.existsSync(filename)) 
-  {
-    courses = JSON.parse(fs.readFileSync(filename));
-  }
-  else 
-  {
-    courses = [];
-  }
-}
+// function reload(filename) 
+// {
+//   if (fs.existsSync(filename)) 
+//   {
+//     courses = JSON.parse(fs.readFileSync(filename));
+//   }
+//   else 
+//   {
+//     courses = [];
+//   }
+// }
 
 //Serve homepage when going to "localhost:8000/"
 app.get('/', (req, res) => {
-  res.set('Content-Type', 'text/html');
-  const home = readFileSync('client/home.html');
-  res.send(home);
-  const path = req.baseUrl;
-  console.log("Sending" + path);
+  const options = {root: app.path() + "client/"};
+  const fileName = "home.html";
+  res.sendFile(fileName, options, function (err) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('Sent:' + fileName);
+    }
+  });
 });
 
-// app.get('/client/:name', (req, res) => {
-//   var options = {root: app.path() + "client/"};
-//   console.log(req.params.name);
-//   res.sendFile(fileName, options, function (err) {
-//     if (err) {
-//       console.log(err);
-//     } else {
-//       console.log('Sent:' + fileName);
-//     }
-//   });
-// })
+app.get('/client/:name', (req, res) => {
+  const options = {root: app.path() + "client/"};
+  const fileName = req.params.name;
+  res.sendFile(fileName, options, function (err) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('Sent:' + fileName);
+    }
+  });
+})
 
 app.get('/getScores', function(req, res) 
 {

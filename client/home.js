@@ -1,22 +1,9 @@
 "use strict";
 
-//Add links to buttons: these lines find all buttons that link to a specific page and add that event listener
-if(document.querySelector(".homebutton") !== null)
-{
-  document.querySelector(".homebutton").addEventListener("click", function() {window.location.href = "http://localhost:8000/home.html";});
-}
-
-if(document.getElementById("searchresults") !== null)
-{
-  document.getElementById("searchresults").addEventListener("click", async function() {
-    window.location.href = await "https://${window.location.hostname}/results.html";
-  });
-}
-
 document.getElementById("searchbutton").addEventListener("click", async function() 
 {
   localStorage.clear();
-  const response = await fetch("http://localhost:3000/getScores", {headers:{"accepts":"application/json"}});
+  const response = await fetch(`https://${window.location.hostname}/getScores`, {headers:{"accepts":"application/json"}});
   const data = await response.json();
   console.log(JSON.stringify(data));
   const input = document.getElementById("search").value;
@@ -42,7 +29,7 @@ document.getElementById("searchbutton").addEventListener("click", async function
       }
     }
   }
-  window.location.href = "http://localhost:8000/results.html";
+  window.location.href = `https://${window.location.hostname}/results.html`;
 });
 
   

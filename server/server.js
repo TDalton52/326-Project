@@ -42,11 +42,24 @@ function reload(filename)
 
 //Serve homepage when going to "localhost:8000/"
 app.get('/', (req, res) => {
-  const options = {root: '/'};
   res.set('Content-Type', 'text/html');
   const home = readFileSync('client/home.html');
   res.send(home);
+  const path = app.path();
+  console.log("Sending" + path);
 });
+
+app.get('/client/:name', (req, res) => {
+  var options = {root: app.path() + "client/"};
+  console.log(req.params.name);
+  res.sendFile(fileName, options, function (err) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('Sent:' + fileName);
+    }
+  });
+})
 
 app.get('/getScores', function(req, res) 
 {

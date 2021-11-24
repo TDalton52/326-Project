@@ -74,18 +74,18 @@ app.get('/getCourses', async function(req, res)
 
 app.post("/createCourse", function(req, res)
 {
-  reload(courseFile);
   //Write param to courses
   //TODO: Check if the POST param fits actual course object
-  courses.push(req.query);
-  fs.writeFileSync(courseFile, JSON.stringify(courses));
-  res.send(JSON.stringify(req.query));
-  reload(courseFile);
+  const data = req.query;
+  const text = "INSERT INTO courses VALUES ($1, $2, $3, $4)";
+  const values = [data.name, data.school, data.instructor, data.time];
+  client.query(text, values, (err, res) => {
+    if(err){
+        console.log(err.stack);
+    }
+  });
+  res.end();
 });
 
-app.post("/reset", function(req, res){
-  fs.writeFileSync(courseFile, "");
-  courses = [];
-});
 
 app.listen(port, function() {console.log(`server listening at http://localhost:${port}`)});

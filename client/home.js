@@ -8,7 +8,9 @@ if(document.querySelector(".homebutton") !== null)
 
 if(document.getElementById("searchresults") !== null)
 {
-  document.getElementById("searchresults").addEventListener("click", function() {window.location.href = "http://localhost:8000/results.html";});
+  document.getElementById("searchresults").addEventListener("click", async function() {
+    window.location.href = await "https://${window.location.hostname}/results.html";
+  });
 }
 
 document.getElementById("searchbutton").addEventListener("click", async function() 

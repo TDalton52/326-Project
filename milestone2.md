@@ -19,3 +19,8 @@ Division of Labor:
     Timothy Dalton:
         Implemented all the GET APIs
         Wrote the search backend for results.js
+
+        <img src="html-images/course.png"/>
+        <img src="html-images/home.png"/>
+        <img src="html-images/results.png"/>
+        <img src="html-images/schedule.png"/>

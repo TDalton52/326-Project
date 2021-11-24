@@ -1,4 +1,4 @@
-API:
+API
     GET /getCourses
         Parameters: None
         Description: Returns all the courses saved under courses.json
@@ -11,16 +11,16 @@ API:
         Parameters: None
         Description: Deletes all the courses saved so far and resets
 
-Division of Labor:
+Division of Labor
     Thant Kyaw Hset:
         Implemented all the POST APIs
         Wrote milestone2.md
 
-    Timothy Dalton:
+    Timothy Dalton
         Implemented all the GET APIs
         Wrote the search backend for results.js
 
-        ![](html-images/course.png)
-        ![](html-images/home.png)
-        ![](html-images/results.png)
-        ![](html-images/schedule.png)
+![](html-images/course.png)
+![](html-images/home.png)
+![](html-images/results.png)
+![](html-images/schedule.png)

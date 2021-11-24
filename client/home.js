@@ -13,8 +13,6 @@ document.getElementById("searchbutton").addEventListener("click", async function
   const searchType = select2.options[select2.selectedIndex].value;
   for(let index in data)
   {
-    console.log(JSON.stringify(data[index]));
-    console.log(data[index].name);
     if(searchType === "keyword")
     {
       if(data[index]["name"].includes(input) && (data[index]["school"] === school || school === "All Colleges"))
@@ -35,7 +33,7 @@ document.getElementById("searchbutton").addEventListener("click", async function
   {
     console.log(item);
   }
-  //window.location.href = `https://${window.location.hostname}/client/results.html`
+  window.location.href = `https://${window.location.hostname}/client/results.html`
 });
 
   

@@ -3,22 +3,23 @@ import express from "express";
 import * as fs from "fs";
 import cors from "cors";
 import pkg from 'pg';
+import {writeFile, readFileSync, existsSync, fstat} from 'fs';
 const {Client} = pkg;
 
 //Starts the postgres client
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-      rejectUnauthorized: false
-  }
-});
+// const client = new Client({
+//   connectionString: process.env.DATABASE_URL,
+//   ssl: {
+//       rejectUnauthorized: false
+//   }
+// });
 
-client.connect();
+// client.connect();
 
 const app = express();
 let port = process.env.PORT;
 if (port == null || port == "") {
-  port = 8000;
+  port = 5000;
 }
 
 app.use(express.json());
@@ -40,8 +41,11 @@ function reload(filename)
 }
 
 //Serve homepage when going to "localhost:8000/"
-app.get('/', function(req, res){
-  res.send('client/home.html');
+app.get('/', (req, res) => {
+  const options = {root: '/'};
+  res.set('Content-Type', 'text/html');
+  const home = readFileSync('client/home.html');
+  res.send(home);
 });
 
 app.get('/getScores', function(req, res) 

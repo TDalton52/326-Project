@@ -3,7 +3,7 @@
 //Add links to buttons: these lines find all buttons that link to a specific page and add that event listener
 if(document.querySelector(".homebutton") !== null)
 {
-  document.querySelector(".homebutton").addEventListener("click", function() {window.location.href =window.location.href = `https://${window.location.hostname}/client/home.html`;});
+  document.querySelector(".homebutton").addEventListener("click", function() {window.location.href =window.location.href = `https://${window.location.hostname}`;});
 }
 
 window.addEventListener("load", function()

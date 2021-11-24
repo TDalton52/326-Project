@@ -2,6 +2,18 @@
 import express from "express";
 import * as fs from "fs";
 import cors from "cors";
+import pkg from 'pg';
+const {Client} = pkg;
+
+//Starts the postgres client
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+      rejectUnauthorized: false
+  }
+});
+
+client.connect();
 
 const app = express();
 let port = process.env.PORT;
@@ -12,7 +24,7 @@ if (port == null || port == "") {
 app.use(express.json());
 app.use(cors());
 
-const courseFile = "./courses.json";
+
 let courses = [];
 
 function reload(filename) 

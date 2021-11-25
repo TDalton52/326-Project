@@ -1,7 +1,7 @@
 "use strict";
 
 //Add links to buttons: these lines find all buttons that link to a specific page and add that event listener
-document.getElementById("homebutton").addEventListener("click", function() {window.location.href = `https://${window.location.hostname}/client/home.html`;});
+document.getElementById("homebutton").addEventListener("click", function() {window.location.href = `https://${window.location.hostname}`;});
 document.getElementById("searchresults").addEventListener("click", function() {window.location.href = `https://${window.location.hostname}/client/results.html`;});
 
 window.addEventListener("load", async function()

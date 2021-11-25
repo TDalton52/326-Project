@@ -1,6 +1,6 @@
 "use strict";
 
-document.getElementById("homebutton").addEventListener("click", function() {window.location.href = `https://${window.location.hostname}/client/home.html`;});
+document.getElementById("homebutton").addEventListener("click", function() {window.location.href = `https://${window.location.hostname}`;});
 document.getElementById("resetbutton").addEventListener("click", function() {if("courses" in window.localStorage) {window.localStorage.removeItem("courses");}});
 
 window.addEventListener("load", async function()

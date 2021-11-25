@@ -20,7 +20,7 @@ if (port == null || port == "") {
 
 // Starts the postgres client
 const client = new Client({
-  connectionString: "postgres://necirnaknrmnas:2bcf7172968ae65295b2647a1cdaf1da2ea7cb7ff74770b1a87cf8343dcb19a5@ec2-184-73-198-174.compute-1.amazonaws.com:5432/d3sbd6gu2f2j7g",
+  connectionString: process.env.DATABASE_URL,
   ssl: {
       rejectUnauthorized: false
   }

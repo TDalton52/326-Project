@@ -3,7 +3,7 @@
 window.addEventListener("load", async function()
 {
   //TODO: edit URL so that the proper user is fetched
-  //const response = await fetch(`http://localhost:3000/getData/user`, {headers:{"accepts":"application/json"}});
+  //const response = await fetch(`https://${window.location.hostname}/getData/user`, {headers:{"accepts":"application/json"}});
   //const data = await response.json();
   const data = [{"class-name":"COMPSCI 326","school":"UMass","instructor":"Emery Berger","time":"1:00 - 2:15"}];
   for(const index in data)

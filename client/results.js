@@ -33,13 +33,17 @@ window.addEventListener("load", function()
       newButton.classList.add("btn-primary")
       newButton.addEventListener("click", function()
       {
-        myCourses.push(data);
-        console.log(JSON.stringify(myCourses));
+        if(!(data in myCourses))
+        {
+          myCourses.push(data);
+          console.log(JSON.stringify(myCourses));
+          window.localStorage.setItem("courses", JSON.stringify(myCourses));
+          console.log("testing local storage" + window.localStorage.getItem("courses"));
+        }
       });
       newButtonContainer.appendChild(newButton);
       newRow.appendChild(newButtonContainer);
       document.getElementById("container").appendChild(newRow);
-      window.localStorage.setItem("courses", JSON.stringify(myCourses));
     }
   }
 });

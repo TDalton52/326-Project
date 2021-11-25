@@ -2,7 +2,7 @@
 
 document.getElementById("homebutton").addEventListener("click", function() {window.location.href =window.location.href = `https://${window.location.hostname}`;});
 
-window.addEventListener("load", async function()
+window.addEventListener("load", function()
 {
   for(let i = 0 ; i < 10; i++)
   {
@@ -22,7 +22,7 @@ window.addEventListener("load", async function()
       const newButtonContainer = document.createElement("span");
       newButtonContainer.classList.add("buttoncontainer");
       const newButton = document.createElement("button");
-      newButton.addEventListener("click", function()
+      newButton.addEventListener("click", async function()
       {
         const response = await fetch(`https://${window.location.hostname}/routeNameHere`, {
           method:"POST",

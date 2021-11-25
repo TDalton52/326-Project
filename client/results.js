@@ -1,10 +1,6 @@
 "use strict";
 
-//Add links to buttons: these lines find all buttons that link to a specific page and add that event listener
-if(document.querySelector(".homebutton") !== null)
-{
-  document.querySelector(".homebutton").addEventListener("click", function() {window.location.href =window.location.href = `https://${window.location.hostname}`;});
-}
+document.getElementById("homebutton").addEventListener("click", function() {window.location.href =window.location.href = `https://${window.location.hostname}`;});
 
 window.addEventListener("load", function()
 {
@@ -23,6 +19,25 @@ window.addEventListener("load", function()
         newElem.innerText = data[key];
         newRow.appendChild(newElem);
       }
+      const newButtonContainer = document.createElement("span");
+      newButtonContainer.classList.add("buttoncontainer");
+      const newButton = document.createElement("button");
+      newButton.innerText = "Add"
+      newButton.classList.add("btn");
+      newButton.classList.add("btn-primary")
+      newButton.addEventListener("click", async function()
+      {
+        const response = await fetch(`https://${window.location.hostname}/routeNameHere`, {
+          method:"POST",
+          body:JSON.stringify(data)
+        });
+        if(!response.ok)
+        {
+          console.log(response.error);
+        }
+      });
+      newButtonContainer.appendChild(newButton);
+      newRow.appendChild(newButtonContainer);
       document.getElementById("container").appendChild(newRow);
     }
   }

@@ -17,19 +17,19 @@ function detectConflict(data)
   }
 }
 
-window.addEventListener("load", async function()
+window.addEventListener("load", function()
 {
-  const response = await fetch(`https://${window.location.hostname}/getCourses`, {headers:{"accepts":"application/json"}});
-  const data = await response.json();
+  if(!("courses" in window.localStorage))
+  {
+    window.localStorage.setItem("courses", JSON.stringify([]))
+  }
+  const data = JSON.parse(window.localStorage.getItem("courses"));
   detectConflict(data);
   for(const index in data)
   {
     const days = data[index].time.split(" ")[0].split(/(?=[A-Z])/); //split by any capital letter
     const startTime = data[index].time.split(" ")[1].split("-")[0];
     const endTime = data[index].time.split(" ")[1].split("-")[1];
-    console.log(JSON.stringify(days));
-    console.log(startTime);
-    console.log(endTime);
     for(const day in days)
     {
       document.getElementById(`${days[day]}${startTime.charAt(0)}`).innerText += data[index].name + " (" + data[index].time + ")";

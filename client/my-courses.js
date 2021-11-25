@@ -6,8 +6,11 @@ document.getElementById("resetbutton").addEventListener("click", function() {if(
 
 window.addEventListener("load", async function()
 {
-  const response = await fetch(`https://${window.location.hostname}/getCourses`, {headers:{"accepts":"application/json"}});
-  const data = await response.json();
+  if(!("courses" in window.localStorage))
+  {
+    window.localStorage.setItem("courses", JSON.stringify([]))
+  }
+  const data = JSON.parse(window.localStorage.getItem("courses"));
   for(const index in data)
   {
     console.log(index);

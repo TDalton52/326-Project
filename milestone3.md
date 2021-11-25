@@ -2,7 +2,9 @@ Our database is a psql database hosted by Heroku. We have a table called courses
 
 Division of Labor:
     Tim:
-        
+        Added HTML pages for login interface
+        Changed client-side fetch to work with database and new routes
+        Added dynamic user scheduling and courses to work with new database interactions
 
     TK:
         All Express routing

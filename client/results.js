@@ -1,7 +1,7 @@
 "use strict";
 
 document.getElementById("homebutton").addEventListener("click", function() {window.location.href =window.location.href = `https://${window.location.hostname}`;});
-document.getElementById("schedulebutton").addEventListener("click", function() {window.location.href =window.location.href = `https://${window.location.hostname}/client/schedule`;});
+document.getElementById("schedulebutton").addEventListener("click", function() {window.location.href =window.location.href = `https://${window.location.hostname}/client/schedule.html`;});
 
 window.addEventListener("load", function()
 {

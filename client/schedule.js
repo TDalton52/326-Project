@@ -32,8 +32,8 @@ window.addEventListener("load", async function()
     console.log(endTime);
     for(const day in days)
     {
-      document.getElementById(`${days[day]}${startTime.charAt(0)}`).innerText = data[index].name;
-      document.getElementById(`${days[day]}${endTime.charAt(0)}`).innerText = data[index].name;
+      document.getElementById(`${days[day]}${startTime.charAt(0)}`).innerText = data[index].name + " (" + data[index].time + ")";
+      document.getElementById(`${days[day]}${endTime.charAt(0)}`).innerText = data[index].name + " (" + data[index].time + ")";
     }
   }
 });

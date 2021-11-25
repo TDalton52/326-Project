@@ -10,6 +10,7 @@ import passport from "passport";
 import LocalStrategy from "passport-local";
 const {Client} = pkg;
 
+
 //Starts express app
 const app = express();
 let port = process.env.PORT;
@@ -105,6 +106,14 @@ const strategy = new LocalStrategy(async (username, password, done) => {
   // should create a user object here, associated with a unique identifier
   return done(null, username);
 });
+// Convert user object to a unique identifier.
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+// Convert a unique identifier to a user object.
+passport.deserializeUser((uid, done) => {
+  done(null, uid);
+});
 
 //App using stuff
 passport.use(strategy);
@@ -115,14 +124,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({'extended' : true})); // allow URLencoded data
 
-// Convert user object to a unique identifier.
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
-// Convert a unique identifier to a user object.
-passport.deserializeUser((uid, done) => {
-  done(null, uid);
-});
+
 
 let courses = [];
 //UPDATE COURSES FROM WEBSITE
@@ -168,20 +170,26 @@ app.get('/client/:name', (req, res) => {
   });
 });
 
-app.post("/login", (req, res, next) =>{
-  //TODO: Authenticate stuff
-  console.log(req.body);
-  passport.authenticate('local', (err, user, info) => {
-    console.log('Inside passport.authenticate() callback');
-    console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`);
-    console.log(`req.user: ${JSON.stringify(req.user)}`);
-    req.login(user, (err) => {
-      console.log('Inside req.login() callback')
-      console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`)
-      console.log(`req.user: ${JSON.stringify(req.user)}`)
-      return res.send('You were authenticated & logged in!\n');
-    })
-  })(req, res, next);
+app.post('/login',
+	 passport.authenticate('local' , {     // use username/password authentication
+	     'successRedirect' : '/client/my-courses.html/',   // when we login, go to /private 
+	     'failureRedirect' : '/client/login.html'      // otherwise, back to login
+  }));
+
+app.post('/register', (req, res) => {
+    const username = req.body['username'];
+    const password = req.body['password'];
+    
+    if (addUser(username, password)){	
+      res.redirect('/login');
+    } 
+    else {res.redirect('/register');
+    }
+});
+
+app.get('/logout', (req, res) => {
+  req.logout(); // Logs us out!
+  res.redirect('/login'); // back to login
 });
 
 app.get('/getCourses', async function(req, res) 

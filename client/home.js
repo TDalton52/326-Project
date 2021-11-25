@@ -2,7 +2,13 @@
 
 document.getElementById("searchbutton").addEventListener("click", async function() 
 {
-  localStorage.clear();
+  for(let i = 0; i < 10; i++)
+  {
+    if(i.toString() in storage)
+    {
+      window.localStorage.removeItem(i.toString());
+    }
+  }
   const response = await fetch(`https://${window.location.hostname}/getCourses`, {headers:{"accepts":"application/json"}});
   const data = await response.json();
   console.log(JSON.stringify(data));
@@ -29,16 +35,10 @@ document.getElementById("searchbutton").addEventListener("click", async function
       }
     }
   }
-  for(let item in window.localStorage)
-  {
-    console.log(item);
-  }
   window.location.href = `https://${window.location.hostname}/client/results.html`
 });
 
-document.getElementById("loginbutton").addEventListener("click", function()
-{
-  window.location.href = `https://${window.location.hostname}/client/login.html`
-});
+document.getElementById("loginbutton").addEventListener("click", function(){window.location.href = `https://${window.location.hostname}/client/login.html`});
+document.getElementById("mycoursesbutton").addEventListener("click", function(){window.location.href = `https://${window.location.hostname}/client/my-courses.html`});
 
   

@@ -4,7 +4,7 @@ document.getElementById("searchbutton").addEventListener("click", async function
 {
   for(let i = 0; i < 10; i++)
   {
-    if(i.toString() in storage)
+    if(i.toString() in window.localStorage)
     {
       window.localStorage.removeItem(i.toString());
     }

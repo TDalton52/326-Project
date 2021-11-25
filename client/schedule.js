@@ -2,7 +2,7 @@
 
 //Add links to buttons: these lines find all buttons that link to a specific page and add that event listener
 document.getElementById("homebutton").addEventListener("click", function() {window.location.href = `https://${window.location.hostname}`;});
-document.getElementById("searchresults").addEventListener("click", function() {window.location.href = `https://${window.location.hostname}/client/results.html`;});
+document.getElementById("searchbutton").addEventListener("click", function() {window.location.href = `https://${window.location.hostname}/client/results.html`;});
 
 function detectConflict(data)
 {

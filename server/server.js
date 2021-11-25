@@ -6,7 +6,8 @@ import pkg from 'pg';
 import {writeFile, readFileSync, existsSync, fstat} from 'fs';
 import expressSession from "express-session";
 import passport from "passport";
-const LocalStrategy = require("passport-local").Strategy;
+//import uuid from "uuid";
+import LocalStrategy from "passport-local";
 const {Client} = pkg;
 
 //Starts express app
@@ -25,6 +26,61 @@ const client = new Client({
 });
 client.connect();
 
+let users = [];
+function reloadUsers(){
+  client.query("SELECT * FROM users", async (err, res) => {
+    if(err){
+        console.log(err.stack);
+    }
+    else{
+        users = res.rows;
+        console.log(res.rows);
+    }
+  });
+}
+reloadUsers();
+function findUser(username) {
+  for(user in users){
+    if(user.username === username){
+      return true;
+    }
+  }
+  return false;
+}
+
+function validatePassword(name, pwd) {
+  for(user in users){
+    if(user.username === name && user.password === pwd){
+      return true;
+    }
+  }
+  return false;
+}
+
+function addUser(name, pwd) {
+  if (findUser(name)) {
+    return false;
+  }
+  users.push({name: pwd});
+  const text = "INSERT INTO users VALUES ($1, $2)";
+  const values = [name, pwd];
+  client.query(text, values, (err, res) => {
+    if(err){
+        console.log(err.stack);
+    }
+  });
+  return true;
+}
+
+function checkLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    // If we are authenticated, run the next route.
+    next();
+  } else {
+    // Otherwise, redirect to the login page.
+    res.redirect('/login');
+  }
+}
 //Session init
 const session = {
   secret : process.env.SECRET || 'SECRET', // set this encryption key in Heroku config (never in GitHub)!
@@ -57,6 +113,16 @@ app.use(express.json());
 app.use(cors());
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.urlencoded({'extended' : true})); // allow URLencoded data
+
+// Convert user object to a unique identifier.
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+// Convert a unique identifier to a user object.
+passport.deserializeUser((uid, done) => {
+  done(null, uid);
+});
 
 let courses = [];
 //UPDATE COURSES FROM WEBSITE
@@ -72,11 +138,14 @@ function reload(){
   });
 }
 
+
+
 reload();
 //Serve homepage when going to "localhost:8000/"
 app.get('/', (req, res) => {
   const options = {root: app.path() + "client/"};
   const fileName = "home.html";
+  const uniqueID = uuid();
   res.sendFile(fileName, options, function (err) {
     if (err) {
       console.log(err);
@@ -84,6 +153,7 @@ app.get('/', (req, res) => {
       console.log('Sent:' + fileName);
     }
   });
+  console.log(uniqueID);
 });
 
 app.get('/client/:name', (req, res) => {

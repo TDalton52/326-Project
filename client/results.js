@@ -2,7 +2,7 @@
 
 document.getElementById("homebutton").addEventListener("click", function() {window.location.href =window.location.href = `https://${window.location.hostname}`;});
 
-window.addEventListener("load", function()
+window.addEventListener("load", async function()
 {
   for(let i = 0 ; i < 10; i++)
   {
@@ -19,6 +19,22 @@ window.addEventListener("load", function()
         newElem.innerText = data[key];
         newRow.appendChild(newElem);
       }
+      const newButtonContainer = document.createElement("span");
+      newButtonContainer.classList.add("buttoncontainer");
+      const newButton = document.createElement("button");
+      newButton.addEventListener("click", function()
+      {
+        const response = await fetch(`https://${window.location.hostname}/routeNameHere`, {
+          method:"POST",
+          body:JSON.stringify(data)
+        });
+        if(!response.ok)
+        {
+          console.log(response.error);
+        }
+      });
+      newButtonContainer.innerHTML = newButton;
+      newRow.appendChild(newButtonContainer);
       document.getElementById("container").appendChild(newRow);
     }
   }

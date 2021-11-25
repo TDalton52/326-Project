@@ -22,6 +22,7 @@ window.addEventListener("load", function()
       const newButtonContainer = document.createElement("span");
       newButtonContainer.classList.add("buttoncontainer");
       const newButton = document.createElement("button");
+      newButton.innerText = "Add"
       newButton.addEventListener("click", async function()
       {
         const response = await fetch(`https://${window.location.hostname}/routeNameHere`, {
@@ -33,7 +34,7 @@ window.addEventListener("load", function()
           console.log(response.error);
         }
       });
-      newButtonContainer.innerHTML = newButton;
+      newButtonContainer.appendChild(newButton);
       newRow.appendChild(newButtonContainer);
       document.getElementById("container").appendChild(newRow);
     }

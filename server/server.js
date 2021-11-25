@@ -41,7 +41,7 @@ function reloadUsers(){
 }
 reloadUsers();
 function findUser(username) {
-  for(user in users){
+  for(const user in users){
     if(user.username === username){
       return true;
     }
@@ -50,7 +50,7 @@ function findUser(username) {
 }
 
 function validatePassword(name, pwd) {
-  for(user in users){
+  for(const user in users){
     if(user.username === name && user.password === pwd){
       return true;
     }

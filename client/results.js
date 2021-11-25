@@ -23,7 +23,8 @@ window.addEventListener("load", function()
       newButtonContainer.classList.add("buttoncontainer");
       const newButton = document.createElement("button");
       newButton.innerText = "Add"
-      newButton.classList.add("btn btn-primary")
+      newButton.classList.add("btn");
+      newButton.classList.add("btn-primary")
       newButton.addEventListener("click", async function()
       {
         const response = await fetch(`https://${window.location.hostname}/routeNameHere`, {

@@ -181,7 +181,7 @@ app.post('/register', (req, res) => {
     const password = req.body['password'];
     
     if (addUser(username, password)){	
-      res.redirect('/login');
+      res.redirect('client/login');
     } 
     else {res.redirect('/register');
     }

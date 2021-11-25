@@ -34,6 +34,7 @@ window.addEventListener("load", function()
       newButton.addEventListener("click", function()
       {
         myCourses.push(data);
+        console.log(JSON.stringify(myCourses));
       });
       newButtonContainer.appendChild(newButton);
       newRow.appendChild(newButtonContainer);

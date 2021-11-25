@@ -11,7 +11,7 @@ function detectConflict(data)
   {
     if(data[index].time in times)
     {
-      alert(`Conflict detected! Both ${data[index].name} and ${times[data[index].time]} meet at ${data[index].time}!`)
+      alert(`Conflict detected! Both ${data[index].name} and ${times[data[index].time]} meet at ${data[index].time}! The schedule will display both classes, but this conflict must be fixed during real registration`)
     }
     times[data[index].time] = data[index].name;
   }
@@ -19,17 +19,21 @@ function detectConflict(data)
 
 window.addEventListener("load", async function()
 {
-  //TODO: edit URL so that the proper user is fetched
-  //const response = await fetch(`https://${window.location.hostname}/getData/user`, {headers:{"accepts":"application/json"}});
-  //const data = await response.json();
-  const data = [{"class-name":"COMPSCI 326","school":"UMass","instructor":"Emery Berger","time":"TuTh 1:00-2:15"}];
+  const response = await fetch(`https://${window.location.hostname}/getCourses`, {headers:{"accepts":"application/json"}});
+  const data = await response.json();
   detectConflict(data);
   for(const index in data)
   {
-    const currEntry = data[index];
-    const days = currEntry.time.split(" ")[0];
-    const startTime = currEntry.time.split(" ")[1].split("-")[0];
-    const endTime = currEntry.time.split(" ")[1].split("-")[1];
-    
+    const days = data[index].time.split(" ")[0].split(/(?=[A-Z])/); //split by any capital letter
+    const startTime = data[index].time.split(" ")[1].split("-")[0];
+    const endTime = data[index].time.split(" ")[1].split("-")[1];
+    console.log(JSON.stringify(days));
+    console.log(startTime);
+    console.log(endTime);
+    for(const day in days)
+    {
+      document.getElementById(`${days[day]}${startTime.charAt(0)}`).innerText = data[index].name;
+      document.getElementById(`${days[day]}${endTime.charAt(0)}`).innerText = data[index].name;
+    }
   }
 });

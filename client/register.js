@@ -1,4 +1,4 @@
-document.getElementById("login").addEventListener("click", async function(){
+document.getElementById("register").addEventListener("click", async function(){
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
   const response = await fetch('/register', {

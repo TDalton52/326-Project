@@ -38,7 +38,7 @@ window.addEventListener("load", function()
           myCourses.push(data);
           console.log(JSON.stringify(myCourses));
           window.localStorage.setItem("courses", JSON.stringify(myCourses));
-          console.log(window.localStorage.getItem("courses"));
+          console.log("testing local storage" + window.localStorage.getItem("courses"));
         }
       });
       newButtonContainer.appendChild(newButton);

@@ -14,4 +14,4 @@ document.getElementById("login").addEventListener("click", async function(){
     }
 });
 
-document.getElementById("registerbutton").addEventListener("click", function() {window.location.href = `https://${window.location.hostname}/client.register.html`});
+document.getElementById("registerbutton").addEventListener("click", function() {window.location.href = `https://${window.location.hostname}/client/register.html`});

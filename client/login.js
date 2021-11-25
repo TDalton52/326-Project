@@ -13,3 +13,5 @@ document.getElementById("login").addEventListener("click", async function(){
         console.error("I fucked up.");
     }
 });
+
+document.getElementById("registerbutton").addEventListener("click", function() {window.location.href = `https://${window.location.hostname}/client.register.html`})

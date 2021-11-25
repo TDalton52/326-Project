@@ -145,7 +145,6 @@ reload();
 app.get('/', (req, res) => {
   const options = {root: app.path() + "client/"};
   const fileName = "home.html";
-  const uniqueID = uuid();
   res.sendFile(fileName, options, function (err) {
     if (err) {
       console.log(err);
@@ -153,7 +152,6 @@ app.get('/', (req, res) => {
       console.log('Sent:' + fileName);
     }
   });
-  console.log(uniqueID);
 });
 
 app.get('/client/:name', (req, res) => {
@@ -166,7 +164,12 @@ app.get('/client/:name', (req, res) => {
       console.log('Sent:' + fileName);
     }
   });
-})
+});
+
+app.post("/login", (req, res) =>{
+  //TODO: Authenticate stuff
+  console.log(req.query);
+});
 
 app.get('/getCourses', async function(req, res) 
 {

@@ -152,6 +152,8 @@ app.get('/', (req, res) => {
       console.log('Sent:' + fileName);
     }
   });
+  //TODO: remove this
+  console.log(req.sessionID);
 });
 
 app.get('/client/:name', (req, res) => {
@@ -168,7 +170,7 @@ app.get('/client/:name', (req, res) => {
 
 app.post("/login", (req, res) =>{
   //TODO: Authenticate stuff
-  console.log(req.query);
+  console.log(req.body);
 });
 
 app.get('/getCourses', async function(req, res) 

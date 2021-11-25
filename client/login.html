@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <head>
   <meta charset="utf-8">
-  <script type = "module" defer src = "./login.js"></script>
   <title>Login</title>
 </head>
 <body>
-    <form>
+    <form action="/login" method="post">
         Username: <input type="text" id="username">
         Password: <input type="text" id="password">
-        <button id="login"> Submit </button>
+        <input type="submit" value="Log in"/>
     </form>
-    <button class = "btn btn-primary" id = "registerbutton">To register page</button>
+    <a href="/client/register.html">Register</a>
 </body>
 </html>

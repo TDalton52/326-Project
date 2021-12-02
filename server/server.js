@@ -1,9 +1,7 @@
 "use strict";
 import express from "express";
-import * as fs from "fs";
 import cors from "cors";
 import pkg from 'pg';
-import {writeFile, readFileSync, existsSync, fstat} from 'fs';
 import expressSession from "express-session";
 import passport from "passport";
 //import uuid from "uuid";
@@ -27,6 +25,8 @@ const client = new Client({
 });
 client.connect();
 
+//Queries psql for all users
+//Dangerous since attackers can just read local memory to get entire users tables
 let users = [];
 function reloadUsers(){
   client.query("SELECT * FROM users", async (err, res) => {
@@ -40,6 +40,8 @@ function reloadUsers(){
   });
 }
 reloadUsers();
+
+//Helper function for authentication to check if user exists
 function findUser(username) {
   for(const user in users){
     if(user.username === username){
@@ -49,6 +51,7 @@ function findUser(username) {
   return false;
 }
 
+//Another helper function for auth
 function validatePassword(name, pwd) {
   for(const user in users){
     if(user.username === name && user.password === pwd){
@@ -58,12 +61,13 @@ function validatePassword(name, pwd) {
   return false;
 }
 
+//Adds user to database for registering
 function addUser(name, pwd) {
   if (findUser(name)) {
     return false;
   }
   users.push({name: pwd});
-  const text = "INSERT INTO users VALUES ($1, $2)";
+  const text = "INSERT INTO users VALUES ($1, $2, {})";
   const values = [name, pwd];
   client.query(text, values, (err, res) => {
     if(err){
@@ -73,6 +77,7 @@ function addUser(name, pwd) {
   return true;
 }
 
+//Helper function to check if logged in to access their page.
 function checkLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     // If we are authenticated, run the next route.
@@ -82,6 +87,7 @@ function checkLoggedIn(req, res, next) {
     res.redirect('/login');
   }
 }
+
 //Session init
 const session = {
   secret : process.env.SECRET || 'SECRET', // set this encryption key in Heroku config (never in GitHub)!
@@ -106,6 +112,7 @@ const strategy = new LocalStrategy(async (username, password, done) => {
   // should create a user object here, associated with a unique identifier
   return done(null, username);
 });
+
 // Convert user object to a unique identifier.
 passport.serializeUser((user, done) => {
   done(null, user);
@@ -198,12 +205,13 @@ app.get('/getCourses', async function(req, res)
   res.json(courses); //This will just be a dummy response for now, check courses.json for what the response will look like
 });
 
-app.post("/createCourse", function(req, res)
+app.post("/addCourse", checkLoggedIn, function(req, res)
 {
-  //Write param to courses
+  //TODO: Get user object from session storage
   //TODO: Check if the POST param fits actual course object
+  //TODO: Add the course information into database
   const data = req.query;
-  const text = "INSERT INTO courses VALUES ($1, $2, $3, $4)";
+  const text = "INSERT INTO users VALUES ($1, $2, $3, $4)";
   const values = [data.name, data.school, data.instructor, data.time];
   client.query(text, values, (err, res) => {
     if(err){
@@ -213,5 +221,10 @@ app.post("/createCourse", function(req, res)
   res.end();
 });
 
+//TODO
+//app.post("/deleteCourse")
+
+//TODO
+//app.get("/myCourses")
 
 app.listen(port, function() {console.log(`server listening at http://localhost:${port}`)});

@@ -31,8 +31,21 @@ window.addEventListener("load", function()
       newButton.innerText = "Add"
       newButton.classList.add("btn");
       newButton.classList.add("btn-primary")
-      newButton.addEventListener("click", function()
+      newButton.addEventListener("click", async function()
       {
+        const response = await fetch(`https://${window.location.hostname}/addCourses`, {
+          method:"POST",
+          headers:{
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          },
+          body:JSON.stringify(data)
+        });
+        if(!response.ok)
+        {
+          console.log(response.error);
+          return;
+        }
         if(!(data in myCourses))
         {
           myCourses.push(data);

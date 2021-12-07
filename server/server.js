@@ -18,7 +18,7 @@ if (port == null || port == "") {
 
 // Starts the postgres client
 const client = new Client({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: "postgres://necirnaknrmnas:2bcf7172968ae65295b2647a1cdaf1da2ea7cb7ff74770b1a87cf8343dcb19a5@ec2-184-73-198-174.compute-1.amazonaws.com:5432/d3sbd6gu2f2j7g",
   ssl: {
       rejectUnauthorized: false
   }
@@ -27,6 +27,7 @@ client.connect();
 
 //Queries psql for all users
 //Dangerous since attackers can just read local memory to get entire users tables
+//TODO: at least encrypt the passwords don't store them as plain text
 let users = [];
 function reloadUsers(){
   client.query("SELECT * FROM users", async (err, res) => {
@@ -43,7 +44,17 @@ reloadUsers();
 
 //Helper function for authentication to check if user exists
 function findUser(username) {
-  for(const user in users){
+  reloadUsers();
+  for(let i = 0; i < users.length; i++){
+    const user = users[i];
+    console.log("Is it this username? " + user.username);
+    if(user.username === username){
+      console.log("user.username === username");
+    }
+    else{
+      console.log("user.username !== username FOR SOME FUCKING REASON");
+    }
+    
     if(user.username === username){
       return true;
     }
@@ -54,6 +65,9 @@ function findUser(username) {
 //Another helper function for auth
 function validatePassword(name, pwd) {
   for(const user in users){
+    // console.log(user);
+    // console.log(user.username === name);
+    // console.log(user.password === pwd);
     if(user.username === name && user.password === pwd){
       return true;
     }
@@ -67,7 +81,7 @@ function addUser(name, pwd) {
     return false;
   }
   users.push({name: pwd});
-  const text = "INSERT INTO users VALUES ($1, $2, {})";
+  const text = "INSERT INTO users (username, password) VALUES ($1, $2)";
   const values = [name, pwd];
   client.query(text, values, (err, res) => {
     if(err){
@@ -98,16 +112,20 @@ const session = {
 //Passport config
 const strategy = new LocalStrategy(async (username, password, done) => {
   if (!findUser(username)) {
+      console.log("Finding user " + username);
       // no such user
       return done(null, false, { 'message' : 'Wrong username' });
   }
   if (!validatePassword(username, password)) {
+      console.log("User found!");
+      console.log("Validating password");
       // invalid password
       // should disable logins after N messages
       // delay return to rate-limit brute-force attacks
       await new Promise((r) => setTimeout(r, 2000)); // two second delay
       return done(null, false, { 'message' : 'Wrong password' });
   }
+  console.log("Succesfully logged in!")
   // success!
   // should create a user object here, associated with a unique identifier
   return done(null, username);
@@ -163,7 +181,22 @@ app.get('/', (req, res) => {
   });
   //TODO: remove this
   console.log(req.sessionID);
+  console.log(req.user);
 });
+
+app.get("/client/my-courses.html", checkLoggedIn, (req, res) =>{
+  console.log("req.session.user = ");
+  console.log(req.session.user);
+  console.log("req.session.passport.user");
+  console.log(req.session.passport.user);
+  const options = {root: app.path() + "client/"};
+  res.sendFile("my-courses.html", options, function (err) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('Sent:' + fileName);
+    }})
+})
 
 app.get('/client/:name', (req, res) => {
   const options = {root: app.path() + "client/"};
@@ -179,13 +212,15 @@ app.get('/client/:name', (req, res) => {
 
 app.post('/login',
 	 passport.authenticate('local' , {     // use username/password authentication
-	     'successRedirect' : '/client/my-courses.html/',   // when we login, go to /private 
-	     'failureRedirect' : '/client/login.html'      // otherwise, back to login
+	     'successRedirect' : '/',   // when we login, go to /private 
+	     'failureRedirect' : '/client/register.html'      // otherwise, back to login
   }));
 
 app.post('/register', (req, res) => {
     const username = req.body['username'];
     const password = req.body['password'];
+    console.log(username);
+    console.log(password);
     
     if (addUser(username, password)){	
       res.redirect('client/login.html');

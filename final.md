@@ -50,6 +50,6 @@ Rubric/Things to be graded on:
 
 4. Ability to add and remove courses from schedule
 
-5. Ability to have multiple users login and make schedule on same machine
+5. The schedule page accurately showing what courses you have added and at what times
 
 

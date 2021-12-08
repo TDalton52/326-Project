@@ -35,39 +35,39 @@ function reloadUsers(){
         console.log(err.stack);
     }
     else{
-        users = res.rows;
-        console.log(res.rows);
+      console.log(res.rows);
+      users = res.rows;
     }
   });
 }
 reloadUsers();
 
+
 //Helper function for authentication to check if user exists
 function findUser(username) {
-  reloadUsers();
+  console.log("In findUser()");
+  console.log("Trying to find if username " + username + " exists..");
   for(let i = 0; i < users.length; i++){
     const user = users[i];
-    console.log("Is it this username? " + user.username);
+    console.log("Is it this username? " + user.username);    
     if(user.username === username){
-      console.log("user.username === username");
-    }
-    else{
-      console.log("user.username !== username FOR SOME FUCKING REASON");
-    }
-    
-    if(user.username === username){
+      console.log("Found username ");
       return true;
     }
   }
+  console.log("Couldn't find any matching users");
   return false;
 }
 
 //Another helper function for auth
 function validatePassword(name, pwd) {
-  for(const user in users){
-    // console.log(user);
-    // console.log(user.username === name);
-    // console.log(user.password === pwd);
+  console.log("In validatePassword() checking to see if this username and password pair exists:");
+  console.log(name + pwd);
+  for(let i = 0; i < users.length; i++){
+    const user = users[i];
+    console.log("Current user we're checking against:");
+    console.log(user.username);
+    console.log(user.password);
     if(user.username === name && user.password === pwd){
       return true;
     }
@@ -77,10 +77,13 @@ function validatePassword(name, pwd) {
 
 //Adds user to database for registering
 function addUser(name, pwd) {
+  console.log("In addUser()..");
   if (findUser(name)) {
+    console.log("Username " + name + " already exists.")
     return false;
   }
-  users.push({name: pwd});
+  console.log("No username of " + name + " found. Adding them to database");
+  users.push({username: name, password: pwd});
   const text = "INSERT INTO users (username, password) VALUES ($1, $2)";
   const values = [name, pwd];
   client.query(text, values, (err, res) => {
@@ -93,12 +96,15 @@ function addUser(name, pwd) {
 
 //Helper function to check if logged in to access their page.
 function checkLoggedIn(req, res, next) {
+  console.log("In checkLoggedIn()");
   if (req.isAuthenticated()) {
+    console.log("Yes logged in!");
     // If we are authenticated, run the next route.
     next();
   } else {
+    console.log("No not logged in yet :(");
     // Otherwise, redirect to the login page.
-    res.redirect('/login');
+    res.redirect('/client/login.html');
   }
 }
 
@@ -111,14 +117,14 @@ const session = {
 
 //Passport config
 const strategy = new LocalStrategy(async (username, password, done) => {
+  console.log("In strategy");
   if (!findUser(username)) {
-      console.log("Finding user " + username);
+      console.log("Cannot find user " + username);
       // no such user
       return done(null, false, { 'message' : 'Wrong username' });
   }
   if (!validatePassword(username, password)) {
-      console.log("User found!");
-      console.log("Validating password");
+      console.log("User found, but password invalid");
       // invalid password
       // should disable logins after N messages
       // delay return to rate-limit brute-force attacks
@@ -185,16 +191,14 @@ app.get('/', (req, res) => {
 });
 
 app.get("/client/my-courses.html", checkLoggedIn, (req, res) =>{
-  console.log("req.session.user = ");
-  console.log(req.session.user);
-  console.log("req.session.passport.user");
-  console.log(req.session.passport.user);
+  console.log("req.user = ");
+  console.log(req.user);
   const options = {root: app.path() + "client/"};
   res.sendFile("my-courses.html", options, function (err) {
     if (err) {
       console.log(err);
     } else {
-      console.log('Sent:' + fileName);
+      console.log('Sent: my-courses.html');
     }})
 })
 
@@ -212,31 +216,31 @@ app.get('/client/:name', (req, res) => {
 
 app.post('/login',
 	 passport.authenticate('local' , {     // use username/password authentication
-	     'successRedirect' : '/',   // when we login, go to /private 
+	     'successRedirect' : '/client/my-courses.html',   // when we login, go to /private 
 	     'failureRedirect' : '/client/register.html'      // otherwise, back to login
   }));
 
 app.post('/register', (req, res) => {
     const username = req.body['username'];
     const password = req.body['password'];
-    console.log(username);
-    console.log(password);
+
     
     if (addUser(username, password)){	
       res.redirect('client/login.html');
     } 
-    else {res.redirect('/register');
+    else {res.redirect('/client/register.html');
     }
 });
 
 app.get('/logout', (req, res) => {
   req.logout(); // Logs us out!
-  res.redirect('/login'); // back to login
+  res.redirect('/client/login'); // back to login
 });
 
 app.get('/getCourses', async function(req, res) 
 {
   reload();
+  //TODO: make it so it only fetches the courses the request asks for
   res.json(courses); //This will just be a dummy response for now, check courses.json for what the response will look like
 });
 

@@ -29,16 +29,10 @@ client.connect();
 //Dangerous since attackers can just read local memory to get entire users tables
 //TODO: at least encrypt the passwords don't store them as plain text
 let users = [];
-function reloadUsers(){
-  client.query("SELECT * FROM users", async (err, res) => {
-    if(err){
-        console.log(err.stack);
-    }
-    else{
-      console.log(res.rows);
-      users = res.rows;
-    }
-  });
+async function reloadUsers(){
+  users = await client.query("SELECT * FROM users");
+  users = users.rows;
+  console.log(users);
 }
 reloadUsers();
 
@@ -159,7 +153,7 @@ app.use(express.urlencoded({'extended' : true})); // allow URLencoded data
 
 let courses = [];
 //UPDATE COURSES FROM WEBSITE
-function reload(){
+function reload(){//TODO: Update to async syntax
   client.query("SELECT * FROM courses", async (err, res) => {
     if(err){
         console.log(err.stack);
@@ -234,7 +228,7 @@ app.post('/register', (req, res) => {
 
 app.get('/logout', (req, res) => {
   req.logout(); // Logs us out!
-  res.redirect('/client/login'); // back to login
+  res.redirect('/client/login.html'); // back to login
 });
 
 app.get('/getCourses', async function(req, res) 
@@ -244,26 +238,41 @@ app.get('/getCourses', async function(req, res)
   res.json(courses); //This will just be a dummy response for now, check courses.json for what the response will look like
 });
 
-app.post("/addCourse", checkLoggedIn, function(req, res)
+app.post("/addCourse", checkLoggedIn, async function(req, res)
 {
-  //TODO: Get user object from session storage
   //TODO: Check if the POST param fits actual course object
   //TODO: Add the course information into database
-  const data = req.query;
-  const text = "INSERT INTO users VALUES ($1, $2, $3, $4)";
-  const values = [data.name, data.school, data.instructor, data.time];
-  client.query(text, values, (err, res) => {
-    if(err){
-        console.log(err.stack);
-    }
-  });
+  const course = req.query;
+  let courses = await client.query("SELECT schedule FROM users WHERE username=$1", [req.user]);
+  courses = courses.rows[0];
+  courses = courses.schedule;
+  if(courses === null){
+    courses = [];
+  }
+  else{
+    courses = JSON.parse(courses);
+  }
+  courses.push(course);
+  client.query("UPDATE users SET schedule=$1 WHERE username=$2", [JSON.stringify(courses), req.user])//May need to stringify courses
   res.end();
 });
 
 //TODO
 //app.post("/deleteCourse")
 
-//TODO
-//app.get("/myCourses")
+
+app.get("/myCourses", checkLoggedIn, async function(req, res)
+{
+  let courses = await client.query("SELECT schedule FROM users WHERE username=$1", [req.user]);
+  courses = courses.rows[0];
+  courses = courses.schedule;
+  if(courses === null){
+    courses = [];
+  }
+  else{
+    courses = JSON.parse(courses);
+  }
+  res.json(courses);
+});
 
 app.listen(port, function() {console.log(`server listening at http://localhost:${port}`)});

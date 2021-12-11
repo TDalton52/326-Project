@@ -231,17 +231,7 @@ app.get('/logout', checkLoggedIn, (req, res) => {
 
 async function queryByName(name)
 {
-  let result = [];
-  client.query(`SELECT * FROM courses WHERE name LIKE '%${name}%'`, async (err, res) => {
-    if (err) {
-      console.log(err.stack);
-    }
-    else {
-      result = res.rows;
-      console.log("inside else block");
-      console.log(result);
-    }
-  });
+  let result = await client.query("SELECT * FROM courses WHERE name LIKE '%$1%'", [name]);
   console.log(result);
   return result;
 }

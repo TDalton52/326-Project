@@ -250,9 +250,9 @@ app.get('/logout', (req, res) => {
 app.get('/getCourses', async function(req, res) 
 {
   params = url.parse(req.url, true).query;
+  console.log(params);
   queryByName(params.name);
-  //TODO: make it so it only fetches the courses the request asks for
-  res.json(courses); //This will just be a dummy response for now, check courses.json for what the response will look like
+  res.json(courses);
 });
 
 app.post("/addCourse", checkLoggedIn, async function(req, res)

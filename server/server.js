@@ -229,13 +229,26 @@ app.get('/logout', checkLoggedIn, (req, res) => {
   res.redirect('/client/login.html'); // back to login
 });
 
+async function queryByName(name)
+{
+  courses = [];
+  client.query(`SELECT * FROM courses WHERE name LIKE '%${name}%'`, async (err, res) => {
+    if (err) {
+      console.log(err.stack);
+    }
+    else {
+      courses = res.rows;
+      console.log(res.rows);
+    }
+  });
+}
+
 app.get('/getCourses', async function(req, res) 
 {
-  const name = req.body;
-  console.log(name);
-  const courses = await client.query('SELECT * FROM courses WHERE name LIKE $1', [name]);
-  console.log(courses);
-  res.json(courses); //This will just be a dummy response for now, check courses.json for what the response will look like
+  let params = url.parse(req.url, true).query;
+  console.log(params.name);
+  await queryByName(params.name);
+  res.json(courses);
 });
 
 app.post("/addCourse", checkLoggedIn, async function(req, res)

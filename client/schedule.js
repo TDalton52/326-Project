@@ -19,7 +19,7 @@ function detectConflict(data)
   }
 }
 
-handleHolyokeAndAmherstDaySystem(dayString, startTime, endTime)
+function handleHolyokeAndAmherstDaySystem(dayString, startTime, endTime)
 {
   if(startTime.charAt(0) == "0")
   {
@@ -93,7 +93,7 @@ handleHolyokeAndAmherstDaySystem(dayString, startTime, endTime)
   }
 }
 
-handleUntimed(course)
+function handleUntimed(course)
 {
   if(document.getElementById("notime").innerText == "")
   {
@@ -105,7 +105,7 @@ handleUntimed(course)
   }
 }
 
-handleUmass(course)
+function handleUmass(course)
 {
   const timeInfo = course.time.split(" ");
   const endTime = timeInfo.pop();
@@ -122,7 +122,7 @@ handleUmass(course)
   }
 }
 
-handleHolyoke(course)
+function handleHolyoke(course)
 {
   const timeInfo = course.time.split(" ");
   const startTime = timeInfo[1];
@@ -130,7 +130,7 @@ handleHolyoke(course)
   handleHolyokeAndAmherstDaySystem(timeInfo[0], startTime, endTime);
 }
 
-handleAmherst(course)
+function handleAmherst(course)
 {
   const timeInfo = course.time.split(" ");
   const times = timeInfo[1].split("-");
@@ -144,7 +144,7 @@ handleAmherst(course)
   handleHolyokeAndAmherstDaySystem(timeInfo[0], startTime, endTime);
 }
 
-handleSmith(course)
+function handleSmith(course)
 {
   const timeInfo = course.time.split(" ");
   timeInfo.pop();
@@ -159,7 +159,7 @@ handleSmith(course)
   }
 }
 
-handleHampshire(course)
+function handleHampshire(course)
 {
   if(course.time == "#NAME?") //why does this happen?
   {

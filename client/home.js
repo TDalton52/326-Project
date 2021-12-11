@@ -2,37 +2,32 @@
 
 document.getElementById("searchbutton").addEventListener("click", async function() 
 {
-  for(let i = 0; i < 10; i++)
+  if("numresults" in window.localStorage)
   {
-    if(i.toString() in window.localStorage)
+    for(let i = 0; i < window.localStorage.getItem("numresults"); i++)
     {
       window.localStorage.removeItem(i.toString());
     }
+    window.localStorage.removeItem("numresults");
   }
-  const response = await fetch(`https://${window.location.hostname}/getCourses`, {headers:{"accepts":"application/json"}});
+  const response = await fetch(`https://${window.location.hostname}/getCourses?name=${document.getElementById("search").value}`, {headers:{"accepts":"application/json"}});
   const data = await response.json();
   console.log(JSON.stringify(data));
-  const input = document.getElementById("search").value;
   const select1 = document.getElementById("colleges");
-  const select2 = document.getElementById("type");
+  const select2 = document.getElementById("numresults");
   const school = select1.options[select1.selectedIndex].value;
-  const searchType = select2.options[select2.selectedIndex].value;
+  const numresults = select2.options[select2.selectedIndex].value;
+  window.localStorage.setItem("numresults", numresults);
   for(let index in data)
   {
-    if(searchType === "keyword")
+    if((data[index]["school"] === school || school === "All Colleges"))
     {
-      if(data[index]["name"].includes(input) && (data[index]["school"] === school || school === "All Colleges"))
-      {
-        console.log("setting storage!");
-        window.localStorage.setItem(index, JSON.stringify(data[index]));
-      }
+      console.log("setting storage!");
+      window.localStorage.setItem(index, JSON.stringify(data[index]));
     }
-    if(searchType === "number")
+    if(index == numresults - 1)
     {
-      if(data[index]["name"] === input && (data[index]["school"] === school || school === "All Colleges"))
-      {
-        window.localStorage.setItem(index, JSON.stringify(data[index]));
-      }
+      break;
     }
   }
   window.location.href = `https://${window.location.hostname}/client/results.html`

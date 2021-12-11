@@ -10,11 +10,6 @@ window.addEventListener("load", function()
     if(i.toString() in window.localStorage)
     {
       const data = JSON.parse(window.localStorage.getItem(i.toString()));
-      if(!("courses" in window.localStorage))
-      {
-        window.localStorage.setItem("courses", JSON.stringify([]))
-      }
-      const myCourses = JSON.parse(window.localStorage.getItem("courses"));
       console.log(JSON.stringify(data));
       const newRow = document.createElement("div");
       newRow.classList.add("row");
@@ -45,13 +40,6 @@ window.addEventListener("load", function()
         {
           console.log(response.error);
           return;
-        }
-        if(!(data in myCourses))
-        {
-          myCourses.push(data);
-          console.log(JSON.stringify(myCourses));
-          window.localStorage.setItem("courses", JSON.stringify(myCourses));
-          console.log("testing local storage" + window.localStorage.getItem("courses"));
         }
       });
       newButtonContainer.appendChild(newButton);

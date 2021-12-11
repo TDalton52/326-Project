@@ -231,7 +231,7 @@ app.get('/logout', checkLoggedIn, (req, res) => {
 
 app.get('/getCourses', async function(req, res) 
 {
-  const name = req.query;
+  const name = req.body;
   console.log(name);
   const courses = await client.query('SELECT * FROM courses WHERE name LIKE $1', [name]);
   console.log(courses);

@@ -160,7 +160,6 @@ function reload(){//TODO: Update to async syntax
     }
     else{
         courses = res.rows;
-        console.log(res.rows);
     }
   });
 }
@@ -226,7 +225,7 @@ app.post('/register', (req, res) => {
     }
 });
 
-app.get('/logout', (req, res) => {
+app.get('/logout', checkLoggedIn, (req, res) => {
   req.logout(); // Logs us out!
   res.redirect('/client/login.html'); // back to login
 });
@@ -241,7 +240,6 @@ app.get('/getCourses', async function(req, res)
 app.post("/addCourse", checkLoggedIn, async function(req, res)
 {
   //TODO: Check if the POST param fits actual course object
-  //TODO: Add the course information into database
   const course = req.query;
   let courses = await client.query("SELECT schedule FROM users WHERE username=$1", [req.user]);
   courses = courses.rows[0];
@@ -253,7 +251,7 @@ app.post("/addCourse", checkLoggedIn, async function(req, res)
     courses = JSON.parse(courses);
   }
   courses.push(course);
-  client.query("UPDATE users SET schedule=$1 WHERE username=$2", [JSON.stringify(courses), req.user])//May need to stringify courses
+  client.query("UPDATE users SET schedule=$1 WHERE username=$2", [JSON.stringify(courses), req.user])
   res.end();
 });
 

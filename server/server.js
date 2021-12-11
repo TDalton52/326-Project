@@ -238,8 +238,11 @@ async function queryByName(name)
     }
     else {
       result = res.rows;
+      console.log("inside else block");
+      console.log(result);
     }
   });
+  console.log(result);
   return result;
 }
 

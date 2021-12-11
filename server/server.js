@@ -165,23 +165,6 @@ function reload(){//TODO: Update to async syntax
     }
   });
 }
-
-function queryByName(name)
-{
-  courses = [];
-  client.query(`SELECT * FROM courses WHERE name LIKE '%${name}%'`, async (err, res) => {
-    if(err){
-        console.log(err.stack);
-    }
-    else{
-        courses = res.rows;
-        console.log(res.rows);
-    }
-  });
-}
-
-
-
 reload();
 //Serve homepage when going to "localhost:8000/"
 app.get('/', (req, res) => {

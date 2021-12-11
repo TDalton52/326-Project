@@ -248,15 +248,17 @@ app.get('/logout', checkLoggedIn, (req, res) => {
 
 app.get('/getCourses', async function(req, res) 
 {
-  params = url.parse(req.url, true).query;
-  queryByName(params.name);
-  //TODO: make it so it only fetches the courses the request asks for
+  const name = req.query;
+  console.log(name);
+  const courses = await client.query('SELECT * FROM courses WHERE name LIKE $1', [name]);
+  console.log(courses);
   res.json(courses); //This will just be a dummy response for now, check courses.json for what the response will look like
 });
 
 app.post("/addCourse", checkLoggedIn, async function(req, res)
 {
   //TODO: Check if the POST param fits actual course object
+  //TODO: Check if same course is being added twice
   const course = req.query;
   let courses = await client.query("SELECT schedule FROM users WHERE username=$1", [req.user]);
   courses = courses.rows[0];

@@ -10,7 +10,12 @@ document.getElementById("searchbutton").addEventListener("click", async function
     }
     window.localStorage.removeItem("numresults");
   }
-  const response = await fetch(`https://${window.location.hostname}/getCourses?name=${document.getElementById("search").value}`, {headers:{"accepts":"application/json"}});
+  const name = document.getElementById("search").value
+  const response = await fetch(`https://${window.location.hostname}/getCourses`, {
+    headers:{"Accept":"application/json"},
+    method: "GET",
+    body: name
+  });
   const data = await response.json();
   console.log(JSON.stringify(data));
   const select1 = document.getElementById("colleges");

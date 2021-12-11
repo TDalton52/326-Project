@@ -231,24 +231,25 @@ app.get('/logout', checkLoggedIn, (req, res) => {
 
 async function queryByName(name)
 {
-  courses = [];
+  let result = [];
   client.query(`SELECT * FROM courses WHERE name LIKE '%${name}%'`, async (err, res) => {
     if (err) {
       console.log(err.stack);
     }
     else {
-      courses = res.rows;
-      console.log(res.rows);
+      result = res.rows;
+      console.log(result);
     }
   });
+  return result;
 }
 
 app.get('/getCourses', async function(req, res) 
 {
   let params = url.parse(req.url, true).query;
   console.log(params.name);
-  await queryByName(params.name);
-  res.json(courses);
+  let result = await queryByName(params.name);
+  res.json(result);
 });
 
 app.post("/addCourse", checkLoggedIn, async function(req, res)

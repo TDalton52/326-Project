@@ -238,7 +238,6 @@ async function queryByName(name)
     }
     else {
       result = res.rows;
-      console.log(result);
     }
   });
   return result;
@@ -249,6 +248,7 @@ app.get('/getCourses', async function(req, res)
   let params = url.parse(req.url, true).query;
   console.log(params.name);
   let result = await queryByName(params.name);
+  console.log(result);
   res.json(result);
 });
 

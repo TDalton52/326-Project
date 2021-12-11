@@ -250,7 +250,7 @@ app.get('/logout', (req, res) => {
 app.get('/getCourses', async function(req, res) 
 {
   let params = url.parse(req.url, true).query;
-  console.log(params);
+  console.log(params.name);
   queryByName(params.name);
   res.json(courses);
 });

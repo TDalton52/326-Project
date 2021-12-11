@@ -188,6 +188,7 @@ window.addEventListener("load", async function()
 {
   const response = await fetch(`https://${window.location.hostname}/myCourses`);
   const data = await response.json();
+  console.log(JSON.stringify(data));
   detectConflict(data);
   for(const index in data)
   {

@@ -5,7 +5,7 @@ document.getElementById("schedulebutton").addEventListener("click", function() {
 
 window.addEventListener("load", function()
 {
-  for(let i = 0 ; i < 10; i++)
+  for(let i = 0; i < window.localStorage.getItem("numresults"); i++)
   {
     if(i.toString() in window.localStorage)
     {
@@ -33,7 +33,7 @@ window.addEventListener("load", function()
       newButton.classList.add("btn-primary")
       newButton.addEventListener("click", async function()
       {
-        const response = await fetch(`https://${window.location.hostname}/addCourses`, {
+        const response = await fetch(`https://${window.location.hostname}/addCourse`, {
           method:"POST",
           headers:{
             "Accept": "application/json",

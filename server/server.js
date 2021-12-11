@@ -1,4 +1,5 @@
 "use strict";
+import * as url from "url";
 import express from "express";
 import cors from "cors";
 import pkg from 'pg';
@@ -154,7 +155,22 @@ app.use(express.urlencoded({'extended' : true})); // allow URLencoded data
 let courses = [];
 //UPDATE COURSES FROM WEBSITE
 function reload(){//TODO: Update to async syntax
+  courses = [];
   client.query("SELECT * FROM courses", async (err, res) => {
+    if(err){
+        console.log(err.stack);
+    }
+    else{
+        courses = res.rows;
+        console.log(res.rows);
+    }
+  });
+}
+
+function queryByName(name)
+{
+  courses = [];
+  client.query(`SELECT * FROM courses WHERE name LIKE '%${name}%'`, async (err, res) => {
     if(err){
         console.log(err.stack);
     }
@@ -233,7 +249,8 @@ app.get('/logout', (req, res) => {
 
 app.get('/getCourses', async function(req, res) 
 {
-  reload();
+  params = url.parse(req.url, true).query;
+  queryByName(params.name);
   //TODO: make it so it only fetches the courses the request asks for
   res.json(courses); //This will just be a dummy response for now, check courses.json for what the response will look like
 });

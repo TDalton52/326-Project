@@ -244,26 +244,44 @@ app.post("/addCourse", checkLoggedIn, async function(req, res)
   //TODO: Check if same course is being added twice
   const course = req.query;
   let courses = await client.query("SELECT schedule FROM users WHERE username=$1", [req.user]);
-  courses = courses.rows[0];
-  courses = courses.schedule;
-  if(courses === null){
-    courses = [];
-  }
-  else{
-    courses = JSON.parse(courses);
-  }
+  courses = courseHelper(courses);
   courses.push(course);
-  client.query("UPDATE users SET schedule=$1 WHERE username=$2", [JSON.stringify(courses), req.user])
+  client.query("UPDATE users SET schedule=$1 WHERE username=$2", [JSON.stringify(courses), req.user]);
   res.end();
 });
 
-//TODO
-//app.post("/deleteCourse")
+
+
+app.post("/deleteCourse", checkLoggedIn, async function(req, res)
+{
+  let courses = await client.query("SELECT schedule FROM users WHERE username=$1", [req.user]);
+  courses = courseHelper(courses);
+  console.log(courses);
+  console.log(req.query);
+  console.log(req.query.name);
+  //Loop through courses to find course to delete
+  for(let i = 0; i < courses.length; i++){
+    const course = courses[i];
+    console.log(course);
+    if(course.name === req.query.name && course.instructor === req.query.instructor && course.Time === req.query.Time){
+      console.log("check succeeded");
+      //Delete course
+      courses.splice(i, 1);
+      client.query("UPDATE users SET schedule=$1 WHERE username=$2", [JSON.stringify(courses), req.user])
+    }
+  }
+  res.end();
+})
 
 
 app.get("/myCourses", checkLoggedIn, async function(req, res)
 {
   let courses = await client.query("SELECT schedule FROM users WHERE username=$1", [req.user]);
+  courses = courseHelper(courses);
+  res.json(courses);
+});
+
+function courseHelper(courses){//Helper func for parsing course data
   courses = courses.rows[0];
   courses = courses.schedule;
   if(courses === null){
@@ -272,7 +290,7 @@ app.get("/myCourses", checkLoggedIn, async function(req, res)
   else{
     courses = JSON.parse(courses);
   }
-  res.json(courses);
-});
+  return courses;
+}
 
 app.listen(port, function() {console.log(`server listening at http://localhost:${port}`)});

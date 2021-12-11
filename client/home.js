@@ -31,7 +31,7 @@ document.getElementById("searchbutton").addEventListener("click", async function
       break;
     }
   }
-  //window.location.href = `https://${window.location.hostname}/client/results.html`
+  window.location.href = `https://${window.location.hostname}/client/results.html`
 });
 
 document.getElementById("loginbutton").addEventListener("click", function(){window.location.href = `https://${window.location.hostname}/client/login.html`});

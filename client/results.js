@@ -41,6 +41,10 @@ window.addEventListener("load", function()
           console.log(response.error);
           return;
         }
+        else
+        {
+          console.log("POST sent successfully!");
+        }
       });
       newButtonContainer.appendChild(newButton);
       newRow.appendChild(newButtonContainer);

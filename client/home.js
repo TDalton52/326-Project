@@ -11,11 +11,7 @@ document.getElementById("searchbutton").addEventListener("click", async function
     window.localStorage.removeItem("numresults");
   }
   const name = document.getElementById("search").value
-  const response = await fetch(`https://${window.location.hostname}/getCourses`, {
-    headers:{"Accept":"application/json"},
-    method: "GET",
-    body: name
-  });
+  const response = await fetch(`https://${window.location.hostname}/getCourses?name=${document.getElementById("search").value}`, {headers:{"accepts":"application/json"}});
   const data = await response.json();
   console.log(JSON.stringify(data));
   const select1 = document.getElementById("colleges");
@@ -35,7 +31,7 @@ document.getElementById("searchbutton").addEventListener("click", async function
       break;
     }
   }
-  //window.location.href = `https://${window.location.hostname}/client/results.html`
+  window.location.href = `https://${window.location.hostname}/client/results.html`
 });
 
 document.getElementById("loginbutton").addEventListener("click", function(){window.location.href = `https://${window.location.hostname}/client/login.html`});

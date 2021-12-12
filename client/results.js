@@ -43,7 +43,7 @@ window.addEventListener("load", function()
         }
         else
         {
-          console.log("POST sent successfully!");
+          console.log("POST sent successfully! Data = " + JSON.stringify(data));
         }
       });
       newButtonContainer.appendChild(newButton);

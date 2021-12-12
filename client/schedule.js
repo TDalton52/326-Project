@@ -106,14 +106,8 @@ function handleUntimed(course)
 function handleUmass(course)
 {
   const timeInfo = course.time.split(" ");
-  for(const index in timeInfo)
-  {
-    console.log(timeInfo[index]);
-  }
   const endTime = timeInfo.pop();
-  console.log(endTime);
   const startTime = timeInfo.pop();
-  console.log(startTime);
   if(timeInfo.length == 0)
   {
     handleUntimed(course);
@@ -131,9 +125,9 @@ function handleUmass(course)
 function handleHolyoke(course)
 {
   const timeInfo = course.time.split(" ");
+  console.log(JSON.stringify(timeInfo));
   const startTime = timeInfo[1];
   const endTime = timeInfo[2].split("-")[1];
-  console.log(JSON.stringify(timeInfo));
   handleHolyokeAndAmherstDaySystem(timeInfo[0], course, startTime, endTime);
 }
 
@@ -142,9 +136,6 @@ function handleAmherst(course)
   const timeInfo = course.time.split(" ");
   const startTime = timeInfo[1];
   const endTime = timeInfo[2].split("-")[1];
-  console.log(JSON.stringify(timeInfo));
-  console.log(startTime);
-  console.log(endTime);
   handleHolyokeAndAmherstDaySystem(timeInfo[0], course, startTime, endTime);
 }
 

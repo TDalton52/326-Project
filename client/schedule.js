@@ -120,10 +120,11 @@ function handleUmass(course)
   const endTimeHour = endTime.split(":")[0]
   for(const day in timeInfo) //last 2 elements are time, popping them out will give just days
   {
-    console.log(`${timeInfo[day]}${startTimeHour}`);
     document.getElementById(`${timeInfo[day]}${startTimeHour}`).innerText += course.name + " (" + course.time + ")";
-    console.log(`${timeInfo[day]}${endTimeHour}`);
-    document.getElementById(`${timeInfo[day]}${endTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    if(!(document.getElementById(`${timeInfo[day]}${endTimeHour}`).innerText.includes(course.name + " (" + course.time + ")")))
+    {
+      document.getElementById(`${timeInfo[day]}${endTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    }
   }
 }
 
@@ -161,7 +162,10 @@ function handleSmith(course)
   for(const day in timeInfo) //last 5 elements are AM/PM, a time, "-", AM/PM, and another time in that order, popping them out will give just days
   {
     document.getElementById(`${timeInfo[day]}${startTimeHour}`).innerText += course.name + " (" + course.time + ")";
-    document.getElementById(`${timeInfo[day]}${endTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    if(!(document.getElementById(`${timeInfo[day]}${endTimeHour}`).innerText.includes(course.name + " (" + course.time + ")")))
+    {
+      document.getElementById(`${timeInfo[day]}${endTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    }
   }
 }
 
@@ -181,7 +185,7 @@ function handleHampshire(course)
     console.log("times are " + JSON.stringify(times));
     let startTime = times[0].substring(0, 5);
     console.log("startTime is " + startTime);
-    let endTime = times[0].substring(0, 5);
+    let endTime = times[1].substring(0, 5);
     console.log("endTime is " + endTime);
     if(startTime.charAt(0) == "0")
     {
@@ -194,7 +198,10 @@ function handleHampshire(course)
     const startTimeHour = startTime.split(":")[0];
     const endTimeHour = endTime.split(":")[0]
     document.getElementById(`${day[1]}${startTimeHour}`).innerText += course.name + " (" + course.time + ")";
-    document.getElementById(`${day[1]}${endTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    if(!(document.getElementById(`${day[1]}${endTimeHour}`).innerText.includes(course.name + " (" + course.time + ")")))
+    {
+      document.getElementById(`${day[1]}${endTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    }
   }
 }
 

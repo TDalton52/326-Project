@@ -2,7 +2,6 @@
 
 document.getElementById("homebutton").addEventListener("click", function() {window.location.href = `https://${window.location.hostname}`;});
 document.getElementById("schedulebutton").addEventListener("click", function() {window.location.href = `https://${window.location.hostname}/client/schedule.html`;});
-//document.getElementById("resetbutton").addEventListener("click", function() {if("courses" in window.localStorage) {window.localStorage.removeItem("courses");}});
 
 window.addEventListener("load", async function()
 {
@@ -20,6 +19,31 @@ window.addEventListener("load", async function()
       newElem.innerText = data[index][key];
       newRow.appendChild(newElem);
     }
+    const newButton = document.createElement("button");
+    newButton.innerText = "Delete"
+    newButton.classList.add("btn");
+    newButton.classList.add("btn-primary")
+    newButton.addEventListener("click", async function()
+    {
+      const response = await fetch(`https://${window.location.hostname}/deleteCourse`, {
+        method:"POST",
+        headers:{
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        body:JSON.stringify(data[index].name)
+      });
+      if(!response.ok)
+      {
+        console.log(response.error);
+        return;
+      }
+      else
+      {
+        console.log("POST sent successfully!");
+      }
+    });
+    newRow.appendChild(newButton);
     document.getElementById("container").appendChild(newRow);
   }
 });

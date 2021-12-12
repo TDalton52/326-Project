@@ -17,7 +17,7 @@ function detectConflict(data)
   }
 }
 
-function handleHolyokeAndAmherstDaySystem(dayString, startTime, endTime)
+function handleHolyokeAndAmherstDaySystem(dayString, course, startTime, endTime)
 {
   if(startTime.charAt(0) == "0")
   {
@@ -133,7 +133,7 @@ function handleHolyoke(course)
   const timeInfo = course.time.split(" ");
   const startTime = timeInfo[1];
   const endTime = timeInfo[2].split("-")[1];
-  handleHolyokeAndAmherstDaySystem(timeInfo[0], startTime, endTime);
+  handleHolyokeAndAmherstDaySystem(timeInfo[0], course, startTime, endTime);
 }
 
 function handleAmherst(course)
@@ -144,7 +144,7 @@ function handleAmherst(course)
   console.log(JSON.stringify(timeInfo));
   console.log(startTime);
   console.log(endTime);
-  handleHolyokeAndAmherstDaySystem(timeInfo[0], startTime, endTime);
+  handleHolyokeAndAmherstDaySystem(timeInfo[0], course, startTime, endTime);
 }
 
 function handleSmith(course)

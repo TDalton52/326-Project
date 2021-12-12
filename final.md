@@ -8,6 +8,8 @@ Overview: We have scraped course data off of a database and constructed a novel 
 
 Team Members: Tim Dalton (@TDalton52 on Github), Thant Kyaw Hset (@thantkyaw10)
 
+Link to Heroku app: https://dashboard.heroku.com/apps/college-scheduler-server-326
+
 UI Components: 
 1. A homepage screen with links to the user's schedule and a login page as well as a search bar that allows for searching of the courses.
 

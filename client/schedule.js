@@ -147,6 +147,10 @@ function handleAmherst(course)
   }
   const startTime = times[0];
   const endTime = times[1];
+  console.log(JSON.stringify(timeInfo));
+  console.log(JSON.stringify(times));
+  console.log(startTime);
+  console.log(endTime);
   handleHolyokeAndAmherstDaySystem(timeInfo[0], startTime, endTime);
 }
 

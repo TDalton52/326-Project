@@ -27,67 +27,69 @@ function handleHolyokeAndAmherstDaySystem(dayString, course, startTime, endTime)
   {
     endTime = endTime.substring(1);
   }
+  const startTimeHour = startTime.split(":");
+  const endTimeHour = endTime.split(":")
   if(dayString == "M")
   {
-    document.getElementById(`M${startTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
-    document.getElementById(`M${endTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`M${startTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`M${endTimeHour}`).innerText += course.name + " (" + course.time + ")";
   }
   else if(dayString == "T")
   {
-    document.getElementById(`TU${startTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
-    document.getElementById(`TU${endTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`TU${startTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`TU${endTimeHour}`).innerText += course.name + " (" + course.time + ")";
   }
   else if(dayString == "W")
   {
-    document.getElementById(`W${startTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
-    document.getElementById(`W${endTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`W${startTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`W${endTimeHour}`).innerText += course.name + " (" + course.time + ")";
   }
   else if(dayString == "TH")
   {
-    document.getElementById(`TH${startTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
-    document.getElementById(`TH${endTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`TH${startTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`TH${endTimeHour}`).innerText += course.name + " (" + course.time + ")";
   }
   else if(dayString == "F")
   {
-    document.getElementById(`F${startTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
-    document.getElementById(`F${endTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`F${startTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`F${endTimeHour}`).innerText += course.name + " (" + course.time + ")";
   }
   else if(dayString == "MW")
   {
-    document.getElementById(`M${startTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
-    document.getElementById(`M${endTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
-    document.getElementById(`W${startTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
-    document.getElementById(`W${endTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`M${startTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`M${endTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`W${startTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`W${endTimeHour}`).innerText += course.name + " (" + course.time + ")";
   }
   else if(dayString == "MF")
   {
-    document.getElementById(`M${startTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
-    document.getElementById(`M${endTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
-    document.getElementById(`F${startTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
-    document.getElementById(`F${endTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`M${startTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`M${endTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`F${startTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`F${endTimeHour}`).innerText += course.name + " (" + course.time + ")";
   }
   else if(dayString == "WF")
   {
-    document.getElementById(`W${startTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
-    document.getElementById(`W${endTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
-    document.getElementById(`F${startTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
-    document.getElementById(`F${endTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`W${startTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`W${endTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`F${startTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`F${endTimeHour}`).innerText += course.name + " (" + course.time + ")";
   }
   else if(dayString == "MWF")
   {
-    document.getElementById(`M${startTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
-    document.getElementById(`M${endTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
-    document.getElementById(`W${startTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
-    document.getElementById(`W${endTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
-    document.getElementById(`F${startTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
-    document.getElementById(`F${endTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`M${startTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`M${endTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`W${startTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`W${endTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`F${startTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`F${endTimeHour}`).innerText += course.name + " (" + course.time + ")";
   }
   else if(dayString == "TTH")
   {
-    document.getElementById(`TU${startTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
-    document.getElementById(`TU${endTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
-    document.getElementById(`TH${startTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
-    document.getElementById(`TH${endTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`TU${startTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`TU${endTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`TH${startTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`TH${endTimeHour}`).innerText += course.name + " (" + course.time + ")";
   }
 }
 
@@ -113,12 +115,14 @@ function handleUmass(course)
     handleUntimed(course);
     return;
   }
+  const startTimeHour = startTime.split(":");
+  const endTimeHour = endTime.split(":")
   for(const day in timeInfo) //last 2 elements are time, popping them out will give just days
   {
-    console.log(`${timeInfo[day]}${startTime.charAt(0)}`);
-    document.getElementById(`${timeInfo[day]}${startTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
-    console.log(`${timeInfo[day]}${endTime.charAt(0)}`);
-    document.getElementById(`${timeInfo[day]}${endTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
+    console.log(`${timeInfo[day]}${startTimeHour}`);
+    document.getElementById(`${timeInfo[day]}${startTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    console.log(`${timeInfo[day]}${endTimeHour}`);
+    document.getElementById(`${timeInfo[day]}${endTimeHour}`).innerText += course.name + " (" + course.time + ")";
   }
 }
 
@@ -129,7 +133,9 @@ function handleHolyoke(course)
   const times = timeInfo[1].split("-");
   console.log(JSON.stringify(times));
   const startTime = times[0].substring(0, 5);
+  console.log(startTime);
   const endTime = times[1].substring(0, 5);
+  console.log(endTime);
   handleHolyokeAndAmherstDaySystem(timeInfo[0], course, startTime, endTime);
 }
 
@@ -149,10 +155,12 @@ function handleSmith(course)
   timeInfo.pop();
   timeInfo.pop();
   const startTime = timeInfo.pop();
+  const startTimeHour = startTime.split(":");
+  const endTimeHour = endTime.split(":")
   for(const day in timeInfo) //last 5 elements are AM/PM, a time, "-", AM/PM, and another time in that order, popping them out will give just days
   {
-    document.getElementById(`${timeInfo[day]}${startTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
-    document.getElementById(`${timeInfo[day]}${endTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`${timeInfo[day]}${startTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`${timeInfo[day]}${endTimeHour}`).innerText += course.name + " (" + course.time + ")";
   }
 }
 
@@ -178,8 +186,10 @@ function handleHampshire(course)
     {
       endTime = endTime.substring(1);
     }
-    document.getElementById(`${day[1]}${startTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
-    document.getElementById(`${day[1]}${endTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
+    const startTimeHour = startTime.split(":");
+    const endTimeHour = endTime.split(":")
+    document.getElementById(`${day[1]}${startTimeHour}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`${day[1]}${endTimeHour}`).innerText += course.name + " (" + course.time + ")";
   }
 }
 

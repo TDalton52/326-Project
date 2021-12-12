@@ -264,15 +264,11 @@ app.post("/deleteCourse", checkLoggedIn, async function(req, res)
 {
   let courses = await client.query("SELECT schedule FROM users WHERE username=$1", [req.user]);
   courses = courseHelper(courses);
-  console.log(courses);
-  console.log(req.query);
-  console.log(req.query.name);
   //Loop through courses to find course to delete
   for(let i = 0; i < courses.length; i++){
     const course = courses[i];
     console.log(course);
     if(course.name === req.query.name && course.instructor === req.query.instructor && course.Time === req.query.Time){
-      console.log("check succeeded");
       //Delete course
       courses.splice(i, 1);
       client.query("UPDATE users SET schedule=$1 WHERE username=$2", [JSON.stringify(courses), req.user])

@@ -131,13 +131,9 @@ function handleUmass(course)
 function handleHolyoke(course)
 {
   const timeInfo = course.time.split(" ");
-  console.log(JSON.stringify(timeInfo));
   const times = timeInfo[1].split("-");
-  console.log(JSON.stringify(times));
   const startTime = times[0].substring(0, 5);
-  console.log(startTime);
   const endTime = times[1].substring(0, 5);
-  console.log(endTime);
   handleHolyokeAndAmherstDaySystem(timeInfo[0], course, startTime, endTime);
 }
 
@@ -180,13 +176,9 @@ function handleHampshire(course)
   for(const entry in timeInfo)
   {
     const day = timeInfo[entry].split(" ");
-    console.log("day is " + JSON.stringify(day));
     const times = day[0].split("-");
-    console.log("times are " + JSON.stringify(times));
     let startTime = times[0].substring(0, 5);
-    console.log("startTime is " + startTime);
     let endTime = times[1].substring(0, 5);
-    console.log("endTime is " + endTime);
     if(startTime.charAt(0) == "0")
     {
       startTime = startTime.substring(1);
@@ -209,7 +201,6 @@ window.addEventListener("load", async function()
 {
   const response = await fetch(`https://${window.location.hostname}/myCourses`);
   const data = await response.json();
-  console.log(JSON.stringify(data));
   detectConflict(data);
   for(const index in data)
   {

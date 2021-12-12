@@ -13,7 +13,6 @@ document.getElementById("searchbutton").addEventListener("click", async function
   const name = document.getElementById("search").value
   const response = await fetch(`https://${window.location.hostname}/getCourses?name=${document.getElementById("search").value}`, {headers:{"accepts":"application/json"}});
   const data = await response.json();
-  console.log(JSON.stringify(data));
   const select1 = document.getElementById("colleges");
   const select2 = document.getElementById("numresults");
   const school = select1.options[select1.selectedIndex].value;
@@ -23,7 +22,6 @@ document.getElementById("searchbutton").addEventListener("click", async function
   {
     if((data[index]["school"] === school || school === "All Colleges"))
     {
-      console.log("setting storage!");
       window.localStorage.setItem(index, JSON.stringify(data[index]));
     }
     if(index == numresults - 1)

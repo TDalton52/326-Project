@@ -11,7 +11,6 @@ window.addEventListener("load", function()
     if(i.toString() in window.localStorage)
     {
       const data = JSON.parse(window.localStorage.getItem(i.toString()));
-      console.log(JSON.stringify(data));
       const newRow = document.createElement("div");
       newRow.classList.add("row");
       for(const key in data)
@@ -41,10 +40,6 @@ window.addEventListener("load", function()
         {
           console.log(response.error);
           return;
-        }
-        else
-        {
-          console.log("POST sent successfully! Data = " + JSON.stringify(data));
         }
       });
       newButtonContainer.appendChild(newButton);

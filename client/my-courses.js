@@ -11,10 +11,8 @@ window.addEventListener("load", async function()
 {
   const response = await fetch(`https://${window.location.hostname}/myCourses`, {headers:{"accepts":"application/json"}});
   const data = await response.json();
-  console.log(JSON.stringify(data));
   for(const index in data)
   {
-    console.log(index);
     const newRow = document.createElement("div");
     newRow.classList.add("row");
     for(const key in data[index])
@@ -44,10 +42,6 @@ window.addEventListener("load", async function()
       {
         console.log(response.error);
         return;
-      }
-      else
-      {
-        console.log("POST sent successfully!");
       }
     });
     newButtonContainer.appendChild(newButton);

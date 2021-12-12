@@ -106,8 +106,14 @@ function handleUntimed(course)
 function handleUmass(course)
 {
   const timeInfo = course.time.split(" ");
+  for(const index in timeInfo)
+  {
+    console.log(timeInfo[index]);
+  }
   const endTime = timeInfo.pop();
+  console.log(endTime);
   const startTime = timeInfo.pop();
+  console.log(startTime);
   if(timeInfo.length == 0)
   {
     handleUntimed(course);

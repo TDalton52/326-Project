@@ -176,8 +176,8 @@ function handleHampshire(course)
   {
     const day = entry.split(" ");
     const times = day[0].split("-");
-    const startTime = times[0].substring(0, 5);
-    const endTime = times[0].substring(0, 5);
+    let startTime = times[0].substring(0, 5);
+    let endTime = times[0].substring(0, 5);
     if(startTime.charAt(0) == "0")
     {
       startTime = startTime.substring(1);

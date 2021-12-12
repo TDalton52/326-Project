@@ -2,6 +2,10 @@
 
 document.getElementById("homebutton").addEventListener("click", function() {window.location.href = `https://${window.location.hostname}`;});
 document.getElementById("schedulebutton").addEventListener("click", function() {window.location.href = `https://${window.location.hostname}/client/schedule.html`;});
+document.getElementById("logoutbutton").addEventListener("click", function() {
+  fetch(`https://${window.location.hostname}/logout`, {method:"POST"});
+  window.location.href = `https://${window.location.hostname}/client/schedule.html`;
+});
 
 window.addEventListener("load", async function()
 {

@@ -139,13 +139,8 @@ function handleHolyoke(course)
 function handleAmherst(course)
 {
   const timeInfo = course.time.split(" ");
-  if(times.length == 0)
-  {
-    handleUntimed(course);
-    return;
-  }
   const startTime = timeInfo[2];
-  const endTime = times[2].split("-")[1];
+  const endTime = timeInfo[2].split("-")[1];
   console.log(JSON.stringify(timeInfo));
   console.log(JSON.stringify(times));
   console.log(startTime);

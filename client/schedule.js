@@ -133,6 +133,7 @@ function handleHolyoke(course)
   const timeInfo = course.time.split(" ");
   const startTime = timeInfo[1];
   const endTime = timeInfo[2].split("-")[1];
+  console.log(JSON.stringify(timeInfo));
   handleHolyokeAndAmherstDaySystem(timeInfo[0], course, startTime, endTime);
 }
 

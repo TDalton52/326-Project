@@ -115,7 +115,9 @@ function handleUmass(course)
   }
   for(const day in timeInfo) //last 2 elements are time, popping them out will give just days
   {
+    console.log(`${day}${startTime.charAt(0)}`);
     document.getElementById(`${day}${startTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
+    console.log(`${day}${endTime.charAt(0)}`);
     document.getElementById(`${day}${endTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
   }
 }

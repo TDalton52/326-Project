@@ -106,8 +106,14 @@ function handleUntimed(course)
 function handleUmass(course)
 {
   const timeInfo = course.time.split(" ");
+  for(const index in timeInfo)
+  {
+    console.log(timeInfo[index]);
+  }
   const endTime = timeInfo.pop();
+  console.log(endTime);
   const startTime = timeInfo.pop();
+  console.log(startTime);
   if(timeInfo.length == 0)
   {
     handleUntimed(course);
@@ -115,8 +121,10 @@ function handleUmass(course)
   }
   for(const day in timeInfo) //last 2 elements are time, popping them out will give just days
   {
-    document.getElementById(`${day}${startTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
-    document.getElementById(`${day}${endTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
+    console.log(`${timeInfo[day]}${startTime.charAt(0)}`);
+    document.getElementById(`${timeInfo[day]}${startTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
+    console.log(`${timeInfo[day]}${endTime.charAt(0)}`);
+    document.getElementById(`${timeInfo[day]}${endTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
   }
 }
 
@@ -152,8 +160,8 @@ function handleSmith(course)
   const startTime = timeInfo.pop();
   for(const day in timeInfo) //last 5 elements are AM/PM, a time, "-", AM/PM, and another time in that order, popping them out will give just days
   {
-    document.getElementById(`${day}${startTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
-    document.getElementById(`${day}${endTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`${timeInfo[day]}${startTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
+    document.getElementById(`${timeInfo[day]}${endTime.charAt(0)}`).innerText += course.name + " (" + course.time + ")";
   }
 }
 

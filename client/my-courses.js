@@ -7,6 +7,7 @@ window.addEventListener("load", async function()
 {
   const response = await fetch(`https://${window.location.hostname}/myCourses`, {headers:{"accepts":"application/json"}});
   const data = await response.json();
+  console.log(JSON.stringify(data));
   for(const index in data)
   {
     console.log(index);
@@ -19,6 +20,8 @@ window.addEventListener("load", async function()
       newElem.innerText = data[index][key];
       newRow.appendChild(newElem);
     }
+    const newButtonContainer = document.createElement("span");
+    newButtonContainer.classList.add("buttoncontainer");
     const newButton = document.createElement("button");
     newButton.innerText = "Delete"
     newButton.classList.add("btn");
@@ -43,7 +46,8 @@ window.addEventListener("load", async function()
         console.log("POST sent successfully!");
       }
     });
-    newRow.appendChild(newButton);
+    newButtonContainer.appendChild(newButton);
+    newRow.appendChild(newButtonContainer);
     document.getElementById("container").appendChild(newRow);
   }
 });

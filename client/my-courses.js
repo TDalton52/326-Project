@@ -7,6 +7,7 @@ window.addEventListener("load", async function()
 {
   const response = await fetch(`https://${window.location.hostname}/myCourses`, {headers:{"accepts":"application/json"}});
   const data = await response.json();
+  console.log(JSON.stringify(data));
   for(const index in data)
   {
     console.log(index);

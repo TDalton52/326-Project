@@ -2,6 +2,7 @@
 
 document.getElementById("homebutton").addEventListener("click", function() {window.location.href =window.location.href = `https://${window.location.hostname}`;});
 document.getElementById("schedulebutton").addEventListener("click", function() {window.location.href =window.location.href = `https://${window.location.hostname}/client/schedule.html`;});
+document.getElementById("mycoursesbutton").addEventListener("click", function(){window.location.href = `https://${window.location.hostname}/client/my-courses.html`});
 
 window.addEventListener("load", function()
 {

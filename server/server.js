@@ -63,9 +63,10 @@ async function validatePassword(name, pwd) {
 }
 
 //Adds user to database for registering
-function addUser(name, pwd) {
+async function addUser(name, pwd) {
+  let test = await findUser(name);
   console.log("In addUser()..");
-  if (findUser(name)) {
+  if (test) {
     console.log("Username " + name + " already exists.")
     return false;
   }
@@ -198,6 +199,7 @@ app.post('/register', (req, res) => {
 });
 
 app.get('/logout', checkLoggedIn, (req, res) => {
+  console.log("in /logout");
   req.logout(); // Logs us out!
   res.redirect('/client/login.html'); // back to login
 });

@@ -25,20 +25,11 @@ const client = new Client({
 });
 client.connect();
 
-//Queries psql for all users
-//Dangerous since attackers can just read local memory to get entire users tables
-//TODO: at least encrypt the passwords don't store them as plain text
-let users = [];
-async function reloadUsers(){
-  users = await client.query("SELECT * FROM users");
-  users = users.rows;
-  console.log(users);
-}
-reloadUsers();
-
 
 //Helper function for authentication to check if user exists
-function findUser(username) {
+async function findUser(username) {
+  let users = await client.query("SELECT * FROM users");
+  users = users.rows;
   console.log("In findUser()");
   console.log("Trying to find if username " + username + " exists..");
   for(let i = 0; i < users.length; i++){
@@ -55,6 +46,8 @@ function findUser(username) {
 
 //Another helper function for auth
 function validatePassword(name, pwd) {
+  let users = await client.query("SELECT * FROM users");
+  users = users.rows;
   console.log("In validatePassword() checking to see if this username and password pair exists:");
   console.log(name + pwd);
   for(let i = 0; i < users.length; i++){
@@ -77,7 +70,6 @@ function addUser(name, pwd) {
     return false;
   }
   console.log("No username of " + name + " found. Adding them to database");
-  users.push({username: name, password: pwd});
   const text = "INSERT INTO users (username, password) VALUES ($1, $2)";
   const values = [name, pwd];
   client.query(text, values, (err, res) => {
@@ -279,6 +271,7 @@ app.get("/myCourses", checkLoggedIn, async function(req, res)
 
 function courseHelper(courses){//Helper func for parsing course data
   courses = courses.rows[0];
+  console.log(courses);
   courses = courses.schedule;
   if(courses === null){
     courses = [];

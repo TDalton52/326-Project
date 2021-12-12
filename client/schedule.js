@@ -176,9 +176,13 @@ function handleHampshire(course)
   for(const entry in timeInfo)
   {
     const day = entry.split(" ");
+    console.log("day is " + JSON.stringify(day));
     const times = day[0].split("-");
+    console.log("times is " + JSON.stringify(times));
     let startTime = times[0].substring(0, 5);
+    console.log("startTime is " + startTime);
     let endTime = times[0].substring(0, 5);
+    console.log("endTime is " + endTime);
     if(startTime.charAt(0) == "0")
     {
       startTime = startTime.substring(1);

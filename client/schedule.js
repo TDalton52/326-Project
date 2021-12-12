@@ -175,7 +175,7 @@ function handleHampshire(course)
   const timeInfo = course.time.split(";");
   for(const entry in timeInfo)
   {
-    const day = entry.split(" ");
+    const day = timeInfo[entry].split(" ");
     console.log("day is " + JSON.stringify(day));
     const times = day[0].split("-");
     console.log("times is " + JSON.stringify(times));

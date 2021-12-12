@@ -199,6 +199,7 @@ app.post('/register', (req, res) => {
 });
 
 app.get('/logout', checkLoggedIn, (req, res) => {
+  console.log("in /logout");
   req.logout(); // Logs us out!
   res.redirect('/client/login.html'); // back to login
 });

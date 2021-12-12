@@ -1,4 +1,4 @@
-Team Name:
+Team Name: team-hay
 
 Application Name: 5 College Course Searcher and Scheduler
 
@@ -17,10 +17,22 @@ UI Components:
 
 4. A course schedule page that lists the user's schedule in grid format.
 
-APIs: 
-1. /getCourses allows for searching of the database.
+5. A my courses page which only a logged in user can access that lists the courses the user have added to their schedule.
 
-2. /addCourse allows for a user to add a course to their own course list.
+APIs: 
+1. GET /getCourses allows for searching of the database.
+
+2. POST /addCourse allows for a user to add a course to their own course list.
+
+3. POST /deleteCourse allows for deletion of a course from a users schedule
+
+4. GET /myCourses returns all the courses the user has in their schedule
+
+5. POST /login logs the user in if correct information is inputed
+
+6. POST /register registers the user if no duplicate username exists
+
+7. POST /logout logs a userout if already logged in
 
 pSQL Databases:
 1. The courses database contains all of the listed courses in the 5 college area.
@@ -28,14 +40,19 @@ pSQL Databases:
 2. The users database contains all of the current users and their passwords and course information.
 
 URL Routes:
-(to be added)
+1. / home page
+2. /client/login login page
+3. /client/register register page
+4. /client/my-courses my-courses page
+5. /client/results search results page
+6. /client/schedule schedule page
 
-Authentication/Authorization: There are no specific permissions necessary for any user, the authentication allows us to know which user is which and save their course data accordingly.
+Authentication/Authorization: The authentication allows us to know which user is which and save their course data persistently.
 
 Division of Labor:
-Tim Dalton: Built front-end pages, implemented front-end search feature, scraped and added course data, implemented /getCourses API
+Tim Dalton: Built front-end pages, implemented front-end search feature, scraped and added course data, implemented /getCourses API, built schedule page to display course times properly
 
-Thant Kyaw Hset: Built database relationships, implemented /addCourse API, built authorization/authentication features
+Thant Kyaw Hset: Built database relationships, implemented /addCourse, /deleteCoure, /myCourses API, built authorization/authentication features, built all URL routing
 
 (Tim will have many more git commits, but this is due to testing on Heroku instead of locally, so many more bug test/fix commits were required and this does not reflect an unfair division of labor)
 
@@ -48,7 +65,7 @@ Rubric/Things to be graded on:
 
 3. Consistent user authentication
 
-4. Ability to add and remove courses from schedule
+4. Ability to add and remove courses from personal schedule
 
 5. The schedule page accurately showing what courses you have added and at what times
 

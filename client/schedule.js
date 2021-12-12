@@ -28,8 +28,8 @@ function handleHolyokeAndAmherstDaySystem(dayString, course, startTime, endTime)
   {
     endTime = endTime.substring(1);
   }
-  const startTimeHour = startTime.split(":");
-  const endTimeHour = endTime.split(":")
+  const startTimeHour = startTime.split(":")[0];
+  const endTimeHour = endTime.split(":")[0]
   if(dayString == "M")
   {
     document.getElementById(`M${startTimeHour}`).innerText += course.name + " (" + course.time + ")";
@@ -116,8 +116,8 @@ function handleUmass(course)
     handleUntimed(course);
     return;
   }
-  const startTimeHour = startTime.split(":");
-  const endTimeHour = endTime.split(":")
+  const startTimeHour = startTime.split(":")[0];
+  const endTimeHour = endTime.split(":")[0]
   for(const day in timeInfo) //last 2 elements are time, popping them out will give just days
   {
     console.log(`${timeInfo[day]}${startTimeHour}`);
@@ -156,8 +156,8 @@ function handleSmith(course)
   timeInfo.pop();
   timeInfo.pop();
   const startTime = timeInfo.pop();
-  const startTimeHour = startTime.split(":");
-  const endTimeHour = endTime.split(":")
+  const startTimeHour = startTime.split(":")[0];
+  const endTimeHour = endTime.split(":")[0]
   for(const day in timeInfo) //last 5 elements are AM/PM, a time, "-", AM/PM, and another time in that order, popping them out will give just days
   {
     document.getElementById(`${timeInfo[day]}${startTimeHour}`).innerText += course.name + " (" + course.time + ")";
@@ -187,8 +187,8 @@ function handleHampshire(course)
     {
       endTime = endTime.substring(1);
     }
-    const startTimeHour = startTime.split(":");
-    const endTimeHour = endTime.split(":")
+    const startTimeHour = startTime.split(":")[0];
+    const endTimeHour = endTime.split(":")[0]
     document.getElementById(`${day[1]}${startTimeHour}`).innerText += course.name + " (" + course.time + ")";
     document.getElementById(`${day[1]}${endTimeHour}`).innerText += course.name + " (" + course.time + ")";
   }

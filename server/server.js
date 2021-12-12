@@ -250,8 +250,8 @@ app.post("/addCourse", checkLoggedIn, async function(req, res)
 {
   //TODO: Check if the POST param fits actual course object
   //TODO: Check if same course is being added twice
-  const course = req.query;
-  console.log(req.query);
+  const course = req.body;
+  console.log(course);
   let courses = await client.query("SELECT schedule FROM users WHERE username=$1", [req.user]);
   courses = courseHelper(courses);
   courses.push(course);
@@ -266,11 +266,11 @@ app.post("/deleteCourse", checkLoggedIn, async function(req, res)
   let courses = await client.query("SELECT schedule FROM users WHERE username=$1", [req.user]);
   courses = courseHelper(courses);
   //Loop through courses to find course to delete
-  console.log(req.query);;
+  console.log(req.body);;
   for(let i = 0; i < courses.length; i++){
     const course = courses[i];
     console.log(course);
-    if(course.name === req.query.name && course.instructor === req.query.instructor && course.Time === req.query.Time){
+    if(course.name === req.body.name && course.instructor === req.body.instructor && course.Time === req.body.Time){
       //Delete course
       courses.splice(i, 1);
       client.query("UPDATE users SET schedule=$1 WHERE username=$2", [JSON.stringify(courses), req.user])

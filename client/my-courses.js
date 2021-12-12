@@ -31,7 +31,7 @@ window.addEventListener("load", async function()
           "Accept": "application/json",
           "Content-Type": "application/json"
         },
-        body:JSON.stringify(data[index].name)
+        body:JSON.stringify(data[index])
       });
       if(!response.ok)
       {

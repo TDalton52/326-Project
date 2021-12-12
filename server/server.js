@@ -45,7 +45,7 @@ async function findUser(username) {
 }
 
 //Another helper function for auth
-function validatePassword(name, pwd) {
+async function validatePassword(name, pwd) {
   let users = await client.query("SELECT * FROM users");
   users = users.rows;
   console.log("In validatePassword() checking to see if this username and password pair exists:");

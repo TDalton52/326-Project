@@ -119,6 +119,10 @@ function handleUmass(course)
     handleUntimed(course);
     return;
   }
+  for(const index in timeInfo)
+  {
+    console.log(timeInfo[index]);
+  }
   for(const day in timeInfo) //last 2 elements are time, popping them out will give just days
   {
     console.log(`${day}${startTime.charAt(0)}`);
